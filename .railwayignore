@@ -1,0 +1,17 @@
+node_modules
+.env
+bookings_db.json
+payments_db.json
+*.png
+*.jpg
+*.jpeg
+*.mp4
+*.mp3
+*.gif
+*.webp
+*.zip
+*.rar
+images/
+img/
+photos/
+assets/

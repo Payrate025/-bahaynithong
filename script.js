@@ -1,6 +1,6 @@
 
 // ─── CONFIG ───────────────────────────────────────────────
-const AI_SERVER_URL = "http://localhost:3000/chat";
+const AI_SERVER_URL = "https://bahaynithong-production.up.railway.app/chat";
 
 // ─── ELEMENTS ─────────────────────────────────────────────
 const toggle   = document.getElementById("aiToggle");
@@ -290,416 +290,84 @@ function goToSlide(sid,did,idx){
   document.querySelectorAll(`#${did} .slider-dot`).forEach((d,i)=>d.classList.toggle('active',i===idx));
 }
 
-// ═══ ENHANCED TESTIMONIAL CAROUSEL ═══
-const REVIEWS = [
-  { name:"Lebron James",    initials:"LJ", loc:"Manila, Philippines",   room:"Talisay — 2nd Floor Family Room", nights:3, rating:5, text:"Absolutely enchanting stay. The pine-scented air, the warm wooden interiors — we felt like we were in a fairytale cabin. Will definitely come back!" },
-  { name:"Kobe Bryant",     initials:"KB", loc:"Quezon City, Philippines",room:"Hauili — 1st Floor Family Room",   nights:4, rating:5, text:"Perfect for our family reunion. The Family Room fit all 8 of us comfortably. The hosts were incredibly responsive and the location is ideal." },
-  { name:"Michael Jordan",  initials:"MJ", loc:"Chicago, USA",           room:"Salong — 2nd Floor Master Bedroom",nights:2, rating:5, text:"The Smart Lock Master Room exceeded all expectations. Modern, clean, and the mountain breeze is unbeatable. Highly recommended for couples!" },
-  { name:"Adolfo & Cerezo", initials:"AC", loc:"Cebu, Philippines",      room:"Odorata — 1st Floor Master Bedroom",nights:5,rating:5, text:"We celebrated our anniversary here and it was magical. The heritage aesthetic with modern comforts is a perfect balance. Bahay ni Thong is a gem!" },
-];
-
-let testiIdx = 0;
-let testiTimer = null;
-
-function renderTestimonials(){
-  const thumbs = document.getElementById('testiThumbs');
-  const dots   = document.getElementById('testiDots');
-  if(!thumbs||!dots) return;
-
-  thumbs.innerHTML = REVIEWS.map((r,i)=>`
-    <div class="testi-thumb${i===0?' active':''}" onclick="goToTesti(${i})" title="${r.name}">${r.initials}</div>
-  `).join('');
-
-  dots.innerHTML = REVIEWS.map((_,i)=>`
-    <div class="testi-dot${i===0?' active':''}" onclick="goToTesti(${i})"></div>
-  `).join('');
-
-  showTesti(0);
-  startTestiAuto();
+// ═══ TESTIMONIAL CAROUSEL ═══
+let testiPos=0;
+function scrollTesti(dir){
+  const track=document.getElementById('testiTrack');
+  const cards=track.querySelectorAll('.testi-card');
+  const cardW=cards[0].offsetWidth+24;
+  const max=cards.length-2;
+  testiPos=Math.max(0,Math.min(testiPos+dir,max));
+  track.style.transform=`translateX(-${testiPos*cardW}px)`;
 }
 
-function showTesti(idx){
-  const r = REVIEWS[idx];
-  const stars = '★'.repeat(r.rating) + '☆'.repeat(5-r.rating);
-  const featured = document.getElementById('testiFeatured');
-  if(featured) featured.style.opacity='0';
+// ═══ CALENDAR ═══
+let calYear=new Date().getFullYear();
+let calMonth=new Date().getMonth();
+const MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
 
-  setTimeout(()=>{
-    document.getElementById('testiStars').textContent  = stars;
-    document.getElementById('testiText').textContent   = r.text;
-    document.getElementById('testiAuthor').textContent = r.name;
-    document.getElementById('testiLoc').textContent    = '📍 '+r.loc;
-    document.getElementById('testiRoom').textContent   = '🛏️ '+r.room+' · '+r.nights+' nights';
-    document.getElementById('testiAvatar').textContent = r.initials;
-    if(featured) featured.style.opacity='1';
-  }, 250);
-
-  document.querySelectorAll('.testi-thumb').forEach((t,i)=>t.classList.toggle('active',i===idx));
-  document.querySelectorAll('.testi-dot').forEach((d,i) =>d.classList.toggle('active',i===idx));
-  testiIdx = idx;
-}
-
-function goToTesti(idx){ clearTestiAuto(); showTesti(idx); startTestiAuto(); }
-function moveTesti(dir){ goToTesti((testiIdx+dir+REVIEWS.length)%REVIEWS.length); }
-
-function startTestiAuto(){
-  clearTestiAuto();
-  testiTimer = setInterval(()=>showTesti((testiIdx+1)%REVIEWS.length), 5000);
-}
-function clearTestiAuto(){ if(testiTimer){ clearInterval(testiTimer); testiTimer=null; } }
-
-// ─── REVIEW FORM ─────────────────────────────────────────
-let selectedRating = 0;
-
-document.addEventListener('DOMContentLoaded',()=>{
-  renderTestimonials();
-
-  // Star selector
-  const stars = document.querySelectorAll('.star-pick');
-  stars.forEach(s=>{
-    s.addEventListener('mouseover',()=>{
-      const v=parseInt(s.dataset.val);
-      stars.forEach((x,i)=>x.classList.toggle('active',i<v));
-    });
-    s.addEventListener('mouseout',()=>{
-      stars.forEach((x,i)=>x.classList.toggle('active',i<selectedRating));
-    });
-    s.addEventListener('click',()=>{
-      selectedRating=parseInt(s.dataset.val);
-      document.getElementById('rv-rating').value=selectedRating;
-      stars.forEach((x,i)=>x.classList.toggle('active',i<selectedRating));
-      updatePreview();
-    });
-  });
-});
-
-function updatePreview(){
-  const name   = document.getElementById('rv-name')?.value.trim()||'';
-  const text   = document.getElementById('rv-review')?.value.trim()||'';
-  const preview= document.getElementById('reviewPreview');
-  if(!preview) return;
-  if(!name&&!text){ preview.style.display='none'; return; }
-  preview.style.display='block';
-  document.getElementById('previewStars').textContent = '★'.repeat(selectedRating||5)+'☆'.repeat(5-(selectedRating||5));
-  document.getElementById('previewText').textContent  = text||'Your review will appear here...';
-  document.getElementById('previewAuthor').textContent= '— '+(name||'Your Name');
-}
-
-function handleFileUpload(input){
-  const label = document.getElementById('fileLabel');
-  if(input.files&&input.files[0]) label.textContent='📷 '+input.files[0].name;
-}
-
-function submitReview(e){
-  e.preventDefault();
-  const name   = document.getElementById('rv-name').value.trim();
-  const rating = parseInt(document.getElementById('rv-rating').value)||0;
-  if(rating===0){ alert('Please select a star rating po.'); return; }
-
-  // Save to localStorage
-  const reviews = JSON.parse(localStorage.getItem('guestReviews')||'[]');
-  reviews.push({
-    name, rating,
-    email:    document.getElementById('rv-email').value,
-    room:     document.getElementById('rv-room').value,
-    loc:      document.getElementById('rv-loc').value,
-    checkin:  document.getElementById('rv-checkin').value,
-    checkout: document.getElementById('rv-checkout').value,
-    text:     document.getElementById('rv-review').value.trim(),
-    ts:       new Date().toISOString()
-  });
-  localStorage.setItem('guestReviews', JSON.stringify(reviews));
-
-  document.getElementById('reviewForm').style.display='none';
-  document.getElementById('reviewSuccess').style.display='block';
-  document.getElementById('reviewPreview').style.display='none';
-}
-
-function resetReviewForm(){
-  document.getElementById('reviewForm').style.display='block';
-  document.getElementById('reviewForm').reset();
-  document.getElementById('reviewSuccess').style.display='none';
-  selectedRating=0;
-  document.querySelectorAll('.star-pick').forEach(s=>s.classList.remove('active'));
-}
-
-// ═══ ENHANCED CALENDAR WITH ROOM COLORS ═══
-let calYear  = new Date().getFullYear();
-let calMonth = new Date().getMonth();
-let calFilter= 'all';
-const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-
-// ── Room definitions ─────────────────────────────────────
-const ROOMS = {
-  talisay: { name:'Talisay',  label:'2nd Floor Family Room',   color:'#5C8A5C', guests:8,  price:'₱4,500' },
-  hauili:  { name:'Hauili',   label:'1st Floor Family Room',   color:'#4A7A8A', guests:8,  price:'₱4,500' },
-  salong:  { name:'Salong',   label:'2nd Floor Master Bedroom', color:'#8A6A3A', guests:4,  price:'₱6,000' },
-  odorata: { name:'Odorata',  label:'1st Floor Master Bedroom', color:'#8A4A6A', guests:4,  price:'₱6,000' },
+// Demo booked/pending dates
+const bookedDates={
+  'all':['2026-02-15','2026-02-16','2026-02-17','2026-03-05','2026-03-06'],
+  'family':['2026-02-18','2026-02-19','2026-03-10'],
+  'master':['2026-02-22','2026-02-23','2026-03-15']
 };
-
-// ── Demo booking data per room ────────────────────────────
-const roomBookings = {
-  talisay: {
-    booked:  ['2026-05-15','2026-05-16','2026-05-17','2026-05-18','2026-06-10','2026-06-11'],
-    pending: ['2026-05-22','2026-05-23','2026-06-20'],
-    maintenance: []
-  },
-  hauili: {
-    booked:  ['2026-05-10','2026-05-11','2026-05-12','2026-06-05','2026-06-06','2026-06-07'],
-    pending: ['2026-05-25','2026-06-15'],
-    maintenance: ['2026-05-20']
-  },
-  salong: {
-    booked:  ['2026-05-14','2026-05-15','2026-05-16','2026-06-08','2026-06-09'],
-    pending: ['2026-05-28','2026-05-29','2026-06-22'],
-    maintenance: []
-  },
-  odorata: {
-    booked:  ['2026-05-18','2026-05-19','2026-05-20','2026-06-12','2026-06-13'],
-    pending: ['2026-05-30','2026-06-18','2026-06-19'],
-    maintenance: ['2026-06-01']
-  }
+const pendingDates={
+  'all':['2026-02-25','2026-03-01'],
+  'family':['2026-02-27'],
+  'master':['2026-02-28']
 };
-
-// Merge with server bookings
-const bookedDates  = { all:[], family:[], master:[], talisay:[], hauili:[], salong:[], odorata:[] };
-const pendingDates = { all:[], family:[], master:[], talisay:[], hauili:[], salong:[], odorata:[] };
-
-function setRoomFilter(room, el){
-  calFilter = room;
-  document.querySelectorAll('.room-tab').forEach(t=>t.classList.remove('active'));
-  if(el) el.classList.add('active');
-
-  // Update room info bar
-  const bar = document.getElementById('roomInfoContent');
-  if(bar){
-    if(room==='all'){
-      bar.innerHTML='<span class="room-info-name">All Rooms</span><span class="room-info-detail">Showing combined availability for all 4 rooms</span>';
-    } else {
-      const r = ROOMS[room];
-      bar.innerHTML=`
-        <div class="room-dot" style="width:12px;height:12px;background:${r.color};border-radius:50%;flex-shrink:0"></div>
-        <span class="room-info-name">${r.name}</span>
-        <span class="room-info-detail">${r.label} · Up to ${r.guests} guests · ${r.price}/night</span>
-        <span class="room-info-badge">Select Room</span>`;
-    }
-  }
-  renderCalendar();
-}
-
-function getDateStatus(dateStr, room){
-  // Returns: {status, rooms:[]}
-  if(room && room!=='all'){
-    const d = roomBookings[room];
-    if(!d) return { status:'available', rooms:[] };
-    if(d.maintenance?.includes(dateStr)) return { status:'maintenance', rooms:[room] };
-    if(d.booked?.includes(dateStr))      return { status:'booked',      rooms:[room] };
-    if(d.pending?.includes(dateStr))     return { status:'pending',     rooms:[room] };
-
-    // Check server bookings too
-    if(bookedDates[room]?.includes(dateStr))  return { status:'booked',  rooms:[room] };
-    if(pendingDates[room]?.includes(dateStr)) return { status:'pending', rooms:[room] };
-    return { status:'available', rooms:[] };
-  }
-
-  // All rooms — collect which rooms are booked on this day
-  const bookedRooms=[], pendingRooms=[], maintRooms=[];
-  Object.keys(ROOMS).forEach(r=>{
-    const d = roomBookings[r];
-    if(d?.maintenance?.includes(dateStr)) maintRooms.push(r);
-    else if(d?.booked?.includes(dateStr)||bookedDates[r]?.includes(dateStr)||bookedDates.all?.includes(dateStr)) bookedRooms.push(r);
-    else if(d?.pending?.includes(dateStr)||pendingDates[r]?.includes(dateStr)||pendingDates.all?.includes(dateStr)) pendingRooms.push(r);
-  });
-
-  const totalRooms = Object.keys(ROOMS).length;
-  if(maintRooms.length===totalRooms) return { status:'maintenance', rooms:maintRooms };
-  if(bookedRooms.length===totalRooms) return { status:'booked', rooms:bookedRooms };
-  if(bookedRooms.length>0||pendingRooms.length>0) return { status:'partial', rooms:bookedRooms, pendingRooms };
-  return { status:'available', rooms:[] };
-}
 
 function renderCalendar(){
   document.getElementById('calMonthLabel').textContent=`${MONTHS[calMonth]} ${calYear}`;
   const body=document.getElementById('calBody');
   body.innerHTML='';
+  const filter=document.getElementById('roomFilter').value;
+  const allBooked=[...(bookedDates['all']||[]),...(bookedDates[filter]||[])];
+  const allPending=[...(pendingDates['all']||[]),...(pendingDates[filter]||[])];
 
-  const firstDay    = new Date(calYear,calMonth,1).getDay();
-  const daysInMonth = new Date(calYear,calMonth+1,0).getDate();
-  const today       = new Date();
-  const todayStr    = `${today.getFullYear()}-${String(today.getMonth()+1).padStart(2,'0')}-${String(today.getDate()).padStart(2,'0')}`;
+  const firstDay=new Date(calYear,calMonth,1).getDay();
+  const daysInMonth=new Date(calYear,calMonth+1,0).getDate();
+  const today=new Date();
+  const todayStr=`${today.getFullYear()}-${String(today.getMonth()+1).padStart(2,'0')}-${String(today.getDate()).padStart(2,'0')}`;
 
+  // Empty cells
   for(let i=0;i<firstDay;i++){
-    const c=document.createElement('div');
-    c.className='cal-cell empty';
-    body.appendChild(c);
+    const cell=document.createElement('div');
+    cell.className='cal-cell empty';
+    body.appendChild(cell);
   }
-
+  // Day cells
   for(let d=1;d<=daysInMonth;d++){
-    const dateStr = `${calYear}-${String(calMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
-    const cell    = document.createElement('div');
-    const isPast  = new Date(dateStr) < new Date(todayStr);
-
-    const { status, rooms, pendingRooms } = getDateStatus(dateStr, calFilter==='all'?null:calFilter);
-
-    let cls = 'cal-cell';
-    if(dateStr===todayStr)  cls+=' today';
-    else if(isPast)         cls+=' past';
-    else if(status==='booked')      cls+=' booked';
-    else if(status==='pending')     cls+=' pending';
-    else if(status==='maintenance') cls+=' maintenance';
-    else if(status==='partial')     cls+=' partial';
-    else                            cls+=' available';
-
-    if(isPast) { cls+=' past'; }
+    const dateStr=`${calYear}-${String(calMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const cell=document.createElement('div');
+    let cls='cal-cell';
+    if(dateStr===todayStr) cls+=' today';
+    else if(allBooked.includes(dateStr)) cls+=' booked';
+    else if(allPending.includes(dateStr)) cls+=' pending';
+    else cls+=' available';
     cell.className=cls;
 
-    // Date number
     const dateEl=document.createElement('div');
     dateEl.className='cal-date';
     dateEl.textContent=d;
     cell.appendChild(dateEl);
 
-    // Status dot
-    const dot=document.createElement('div');
-    dot.className='cal-dot';
-    cell.appendChild(dot);
-
-    // Room color dots (only on "all" view)
-    if(calFilter==='all' && !isPast && dateStr!==todayStr){
-      const dotsRow = document.createElement('div');
-      dotsRow.className='room-dots-row';
-      Object.keys(ROOMS).forEach(r=>{
-        const d2=roomBookings[r];
-        const isBooked = d2?.booked?.includes(dateStr)||bookedDates[r]?.includes(dateStr);
-        const isPend   = d2?.pending?.includes(dateStr)||pendingDates[r]?.includes(dateStr);
-        if(isBooked||isPend){
-          const rd=document.createElement('div');
-          rd.className=`room-dot dot-${r}`;
-          rd.style.opacity=isBooked?'1':'0.6';
-          dotsRow.appendChild(rd);
-        }
-      });
-      if(dotsRow.children.length>0) cell.appendChild(dotsRow);
+    if(!cell.classList.contains('empty')){
+      const dot=document.createElement('div');
+      dot.className='cal-dot';
+      cell.appendChild(dot);
+      cell.title=allBooked.includes(dateStr)?'Booked':allPending.includes(dateStr)?'Pending':'Available';
     }
-
-    // Tooltip
-    cell.addEventListener('mouseenter', (e)=>showCalTooltip(e, dateStr, d, status, rooms||[], pendingRooms||[]));
-    cell.addEventListener('mousemove',  (e)=>positionTooltip(e));
-    cell.addEventListener('mouseleave', hideCalTooltip);
-
-    // Click to book
-    if(!isPast && status!=='booked' && status!=='maintenance'){
-      cell.addEventListener('click',()=>{
-        openBooking();
-        const ci=document.getElementById('checkIn');
-        if(ci) ci.value=dateStr;
-      });
-    }
-
     body.appendChild(cell);
   }
 }
-
-// ── Tooltip ───────────────────────────────────────────────
-function showCalTooltip(e, dateStr, day, status, bookedRooms, pendingRooms){
-  const tt = document.getElementById('calTooltip');
-  if(!tt) return;
-
-  const date = new Date(dateStr);
-  const label= date.toLocaleDateString('en-PH',{weekday:'short',month:'long',day:'numeric'});
-
-  let rows='';
-  if(calFilter==='all'){
-    Object.keys(ROOMS).forEach(r=>{
-      const rm=ROOMS[r];
-      const isBooked  = roomBookings[r]?.booked?.includes(dateStr)||bookedDates[r]?.includes(dateStr);
-      const isPending = roomBookings[r]?.pending?.includes(dateStr)||pendingDates[r]?.includes(dateStr);
-      const isMaint   = roomBookings[r]?.maintenance?.includes(dateStr);
-      const st   = isMaint?'maintenance':isBooked?'booked':isPending?'pending':'available';
-      const stLbl= isMaint?'Maintenance':isBooked?'Booked':isPending?'Pending':'Available';
-      const stCls= `ts-${st==='maintenance'?'booked':st}`;
-      rows+=`<div class="tooltip-room">
-        <div class="room-dot dot-${r}" style="width:8px;height:8px"></div>
-        <span>${rm.name}</span>
-        <span class="tooltip-status ${stCls}">${stLbl}</span>
-      </div>`;
-    });
-  } else {
-    const rm=ROOMS[calFilter];
-    if(rm){
-      const stLbl=status==='booked'?'Booked':status==='pending'?'Pending':status==='maintenance'?'Maintenance':'Available';
-      const stCls=`ts-${status==='maintenance'?'booked':status}`;
-      rows+=`<div class="tooltip-room">
-        <div class="room-dot dot-${calFilter}" style="width:8px;height:8px"></div>
-        <span>${rm.name} — ${rm.label}</span>
-        <span class="tooltip-status ${stCls}">${stLbl}</span>
-      </div>`;
-      rows+=`<div style="font-size:11px;opacity:.5;margin-top:6px;padding-top:6px;border-top:1px solid rgba(255,255,255,.07)">${rm.guests} guests max · ${rm.price}/night</div>`;
-    }
-  }
-
-  tt.innerHTML=`<div class="tooltip-date">${label}</div>${rows}`;
-  tt.style.display='block';
-  positionTooltip(e);
-}
-
-function positionTooltip(e){
-  const tt=document.getElementById('calTooltip');
-  if(!tt||tt.style.display==='none') return;
-  const x=e.clientX+14, y=e.clientY-10;
-  const w=tt.offsetWidth, h=tt.offsetHeight;
-  tt.style.left=(x+w>window.innerWidth?e.clientX-w-14:x)+'px';
-  tt.style.top=(y+h>window.innerHeight?e.clientY-h-10:y)+'px';
-}
-
-function hideCalTooltip(){
-  const tt=document.getElementById('calTooltip');
-  if(tt) tt.style.display='none';
-}
-
 function changeMonth(dir){
   calMonth+=dir;
   if(calMonth>11){calMonth=0;calYear++}
   if(calMonth<0){calMonth=11;calYear--}
   renderCalendar();
 }
-
-// ── Load from server ──────────────────────────────────────
-function getDatesInRange(start,end){
-  const dates=[]; let cur=new Date(start); const e2=new Date(end);
-  while(cur<e2){ dates.push(cur.toISOString().split('T')[0]); cur.setDate(cur.getDate()+1); }
-  return dates;
-}
-
-async function loadBookedDatesFromServer(){
-  try{
-    const res  = await fetch('http://localhost:3000/bookings');
-    const data = await res.json();
-    data.forEach(b=>{
-      if(!b.checkin||!b.checkout) return;
-      const dates  = getDatesInRange(b.checkin,b.checkout);
-      const status = (b.status||'').toLowerCase();
-      const room   = (b.room||'').toLowerCase();
-      const roomKey= room.includes('talisay')?'talisay':room.includes('hauili')?'hauili':room.includes('salong')?'salong':room.includes('odorata')?'odorata':room.includes('master')?'salong':'talisay';
-      dates.forEach(d=>{
-        if(status.includes('confirm')||status.includes('downpayment')){
-          if(!bookedDates[roomKey].includes(d)) bookedDates[roomKey].push(d);
-          if(!bookedDates.all.includes(d)) bookedDates.all.push(d);
-        } else {
-          if(!pendingDates[roomKey].includes(d)) pendingDates[roomKey].push(d);
-          if(!pendingDates.all.includes(d)) pendingDates.all.push(d);
-        }
-      });
-    });
-    renderCalendar();
-  } catch(e){ /* server offline */ }
-}
-loadBookedDatesFromServer();
-
-// Past cell style
-const styleTag=document.createElement('style');
-styleTag.textContent='.cal-cell.past{opacity:0.3;cursor:default;pointer-events:none}';
-document.head.appendChild(styleTag);
 
 // ═══ BOOKING MODAL ═══
 function openBooking(room=''){
@@ -856,15 +524,4 @@ document.addEventListener('keydown',e=>{
     closeConfirm();
     closeMobile();
   }
-});
-const rateLimit = require("express-rate-limit");
-
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 20, // max 20 requests per IP
-  message: { error: "Too many requests. Please try again later." }
-});
-
-app.use("/booking", limiter);
-app.use("/chat", limiter);
-app.use("/send-payment-request", limiter);
+});s
