@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bahay ni Thong — Heritage Transient House, Baguio City</title>
+<meta name="description" content="Bahay ni Thong – Experience comfort in the City of Pines. A modern heritage transient house in Baguio City, Philippines.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ▒▒▒ LOADING SCREEN ▒▒▒ -->
+<div id="loader">
+  <div class="loader-logo">Balay ni Thong</div>
+  <div class="loader-sub">Baguio City, Philippines</div>
+  <div class="loader-bar"><div class="loader-fill"></div></div>
+</div>
+
+<!-- ▒▒▒ NAVBAR ▒▒▒ -->
+<nav id="mainNav">
+  <a href="#" class="nav-logo">Balay ni Thong<span>Heritage Transient House</span></a>
+  <ul class="nav-links">
+    <li><a href="#about" class="nav-link">About</a></li>
+    <li><a href="#rooms" class="nav-link">Rooms</a></li>
+    <li><a href="#amenities" class="nav-link">Amenities</a></li>
+    <li><a href="#availability" class="nav-link">Availability</a></li>
+    <li><a href="#gallery" class="nav-link">Gallery</a></li>
+    <li><a href="#contact" class="nav-link">Contact</a></li>
+  
+  </ul>
+  <div class="nav-actions">
+    <button class="dark-toggle" id="darkToggle" title="Toggle dark mode">🌙</button>
+    <button class="btn-nav-book" onclick="openBooking()">Book Now</button>
+    <div class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="mobileClose">✕</button>
+  <a href="#about" onclick="closeMobile()">About</a>
+  <a href="#rooms" onclick="closeMobile()">Rooms</a>
+  <a href="#amenities" onclick="closeMobile()">Amenities</a>
+  <a href="#availability" onclick="closeMobile()">Availability</a>
+  <a href="#gallery" onclick="closeMobile()">Gallery</a>
+  <a href="#contact" onclick="closeMobile()">Contact</a>
+  <a href="#" onclick="openBooking();closeMobile()" style="color:#C6A75E">Book Now</a>
+</div>
+
+<!-- ▒▒▒ HERO ▒▒▒ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">✦ Baguio City, Philippines ✦</div>
+    <h1 class="hero-title">
+      Experience Comfort<br>in the <em>City of Pines</em>
+    </h1>
+    <p class="hero-subtitle">
+      A modern heritage home where mountain tranquility<br>meets refined Filipino-Spanish elegance
+    </p>
+    <div class="hero-ctas">
+      <button class="btn-primary" onclick="openBooking()">✦ Book Now</button>
+      <a href="#rooms" class="btn-outline">View Rooms</a>
+      <a href="#availability" class="btn-outline">Check Availability</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ▒▒▒ STATS STRIP ▒▒▒ -->
+<div class="stats-strip">
+  <div class="stat-item reveal">
+    <div class="stat-num" data-count="5">0</div>
+    <div class="stat-label">Happy Guests</div>
+  </div>
+  <div class="stat-item reveal reveal-delay-1">
+    <div class="stat-num" data-count="3">0</div>
+    <div class="stat-label">Months Hosting</div>
+  </div>
+  <div class="stat-item reveal reveal-delay-2">
+    <div class="stat-num" data-count="4">0</div>
+    <div class="stat-label">Room Suites</div>
+  </div>
+  <div class="stat-item reveal reveal-delay-3">
+    <div class="stat-num" data-count="98">0</div>
+    <div class="stat-label">% Satisfaction</div>
+  </div>
+</div>
+
+<!-- ▒▒▒ ABOUT ▒▒▒ -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-img-stack reveal">
+      <div class="about-gold-block"></div>
+      <img class="about-img-main" src="bht.png" alt="Bahay ni Thong Exterior">
+      <img class="about-img-accent" src="interior.jpg" alt="Interior detail">
+    </div>
+    <div class="reveal reveal-delay-1">
+      <div class="section-eyebrow">Our Story</div>
+      <h2 class="section-title">A Heritage Home<br>in the Mountains</h2>
+      <div class="section-line"></div>
+      <p class="section-desc">
+        Bahay ni Thong is more than a place to stay — it is a sanctuary nestled in the cool highlands of Baguio City. Born from a love of Filipino heritage and mountain living, our home blends warm wood interiors, stone accents, and modern comforts into one unforgettable experience.
+      </p>
+      <blockquote class="about-quote">
+        "We built this space so families and friends could gather, breathe the pine-scented air, and feel truly at home."
+      </blockquote>
+      <p class="section-desc">
+        Each room is thoughtfully designed to accommodate groups — from intimate family getaways to barkada adventures. With smart locks, full kitchen access, and the gentle hum of mountain breeze, Bahay ni Thong is your home away from home in the City of Pines.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ▒▒▒ ROOMS ▒▒▒ -->
+<section id="rooms">
+  <div style="text-align:center;margin-bottom:3rem">
+    <div class="section-eyebrow">Accommodations</div>
+    <h2 class="section-title">Rooms & Rates</h2>
+    <div class="section-line" style="margin:0 auto"></div>
+    <p class="section-desc" style="margin:0 auto;color:rgba(245,241,232,0.65)">Thoughtfully designed spaces for every kind of stay</p>
+  </div>
+  <div class="rooms-grid">
+
+    <!-- Room 1 -->
+    <div class="room-card reveal">
+      <div class="room-img-slider">
+        <div class="room-imgs" id="slider1">
+          <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=700&q=80" alt="Family Room">
+          <img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?w=700&q=80" alt="Family Room Beds">
+          <img src="https://images.unsplash.com/photo-1556020685-ae41abfc9365?w=700&q=80" alt="Family Room Space">
+        </div>
+        <button class="slider-btn slider-prev" onclick="slideRoom('slider1','prev')">‹</button>
+        <button class="slider-btn slider-next" onclick="slideRoom('slider1','next')">›</button>
+        <div class="slider-dots" id="dots1">
+          <span class="slider-dot active" onclick="goToSlide('slider1','dots1',0)"></span>
+          <span class="slider-dot" onclick="goToSlide('slider1','dots1',1)"></span>
+          <span class="slider-dot" onclick="goToSlide('slider1','dots1',2)"></span>
+        </div>
+      </div>
+      <div class="room-info">
+        <div class="room-name">Family Room</div>
+        <div class="room-capacity">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+          Up to 8 Guests · 2 Doors · Double Deck Beds
+        </div>
+        <div class="room-amenities">
+          <span class="amenity-tag">WiFi</span>
+          <span class="amenity-tag">Double Deck ×4</span>
+          <span class="amenity-tag">2 Doors</span>
+          <span class="amenity-tag">Hot Shower</span>
+          <span class="amenity-tag">Kitchen Access</span>
+          <span class="amenity-tag">Parking</span>
+        </div>
+        <div class="room-footer">
+          <div class="room-price">
+            <div class="price-amount">₱4,500</div>
+            <div class="price-per">Per Night</div>
+          </div>
+          <button class="btn-reserve" onclick="openBooking('Family Room')">Reserve Now →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Room 2 -->
+    <div class="room-card reveal reveal-delay-1">
+      <div class="room-badge">✦ Premium</div>
+      <div class="room-img-slider">
+        <div class="room-imgs" id="slider2">
+          <img src="Thong/IMG_20260507_085232.jpg" alt="Master Room">
+          <img src="Thong/IMG_20260507_085204.jpg" alt="Master Bedroom">
+          <img src="Thong/IMG_20260507_085420.jpg" alt="Master Bath">
+        </div>
+        <button class="slider-btn slider-prev" onclick="slideRoom('slider2','prev')">‹</button>
+        <button class="slider-btn slider-next" onclick="slideRoom('slider2','next')">›</button>
+        <div class="slider-dots" id="dots2">
+          <span class="slider-dot active" onclick="goToSlide('slider2','dots2',0)"></span>
+          <span class="slider-dot" onclick="goToSlide('slider2','dots2',1)"></span>
+          <span class="slider-dot" onclick="goToSlide('slider2','dots2',2)"></span>
+        </div>
+      </div>
+      <div class="room-info">
+        <div class="room-name">Smart Lock Master Room</div>
+        <div class="room-capacity">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+          Up to 4 Guests · 2 Master Bedrooms · Smart Lock
+        </div>
+        <div class="room-amenities">
+          <span class="amenity-tag">🔐 Smart Lock</span>
+          <span class="amenity-tag">WiFi</span>
+          <span class="amenity-tag">2 Master Beds</span>
+          <span class="amenity-tag">Hot Shower</span>
+          <span class="amenity-tag">Kitchen Access</span>
+          <span class="amenity-tag">Premium</span>
+        </div>
+        <div class="room-footer">
+          <div class="room-price">
+            <div class="price-amount">₱6,000</div>
+            <div class="price-per">Per Night</div>
+          </div>
+          <button class="btn-reserve" onclick="openBooking('Smart Lock Master Room')">Reserve Now →</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ▒▒▒ AMENITIES ▒▒▒ -->
+<section id="amenities">
+  <div style="text-align:center;margin-bottom:3rem">
+    <div class="section-eyebrow">What We Offer</div>
+    <h2 class="section-title">Amenities</h2>
+    <div class="section-line" style="margin:0 auto"></div>
+  </div>
+  <div class="amenities-grid">
+    <div class="amenity-card reveal"><span class="amenity-icon">📶</span><div class="amenity-name">High-Speed WiFi</div></div>
+    <div class="amenity-card reveal reveal-delay-1"><span class="amenity-icon">🍳</span><div class="amenity-name">Kitchen Access</div></div>
+    <div class="amenity-card reveal reveal-delay-2"><span class="amenity-icon">🔐</span><div class="amenity-name">Smart Lock</div></div>
+    <div class="amenity-card reveal reveal-delay-3"><span class="amenity-icon">🚗</span><div class="amenity-name">Free Parking</div></div>
+    <div class="amenity-card reveal"><span class="amenity-icon">🚿</span><div class="amenity-name">Hot & Cold Shower</div></div>
+    <div class="amenity-card reveal reveal-delay-1"><span class="amenity-icon">🌲</span><div class="amenity-name">Mountain Breeze</div></div>
+    <div class="amenity-card reveal reveal-delay-2"><span class="amenity-icon">🔒</span><div class="amenity-name">24/7 Security</div></div>
+    <div class="amenity-card reveal reveal-delay-3"><span class="amenity-icon">🛏️</span><div class="amenity-name">Fresh Linens</div></div>
+  </div>
+</section>
+
+<!-- ▒▒▒ AVAILABILITY CALENDAR ▒▒▒ -->
+<section id="availability">
+  <div class="avail-container">
+    <div class="section-eyebrow reveal">Live Booking Schedule</div>
+    <h2 class="section-title reveal">Availability Calendar</h2>
+    <div class="section-line reveal" style="margin:0 auto"></div>
+    <p class="section-desc reveal" style="text-align:center;margin:0 auto 2.5rem">Check real-time room availability before making your reservation</p>
+
+    <!-- Room Filter Tabs -->
+    <div class="room-filter-tabs reveal">
+      <button class="room-tab active" data-room="all" onclick="setRoomFilter('all',this)">🏠 All Rooms</button>
+      <button class="room-tab talisay" data-room="talisay" onclick="setRoomFilter('talisay',this)">🌳 Talisay</button>
+      <button class="room-tab hauili" data-room="hauili" onclick="setRoomFilter('hauili',this)">🌿 Hauili</button>
+      <button class="room-tab salong" data-room="salong" onclick="setRoomFilter('salong',this)">🪵 Salong</button>
+      <button class="room-tab odorata" data-room="odorata" onclick="setRoomFilter('odorata',this)">🌺 Odorata</button>
+    </div>
+
+    <!-- Room Info Bar -->
+    <div class="room-info-bar reveal" id="roomInfoBar">
+      <div class="room-info-item" id="roomInfoContent">
+        <span class="room-info-name">All Rooms</span>
+        <span class="room-info-detail">Select a room to see details</span>
+      </div>
+    </div>
+
+    <!-- Calendar Nav -->
+    <div class="cal-nav-bar reveal">
+      <button class="cal-nav-btn" onclick="changeMonth(-1)">‹</button>
+      <div class="cal-month" id="calMonthLabel"></div>
+      <button class="cal-nav-btn" onclick="changeMonth(1)">›</button>
+    </div>
+
+    <!-- Calendar -->
+    <div class="calendar reveal">
+      <div class="cal-header">
+        <div class="cal-day-name">Sun</div>
+        <div class="cal-day-name">Mon</div>
+        <div class="cal-day-name">Tue</div>
+        <div class="cal-day-name">Wed</div>
+        <div class="cal-day-name">Thu</div>
+        <div class="cal-day-name">Fri</div>
+        <div class="cal-day-name">Sat</div>
+      </div>
+      <div class="cal-body" id="calBody"></div>
+    </div>
+
+    <!-- Date Tooltip -->
+    <div class="cal-tooltip" id="calTooltip" style="display:none"></div>
+
+    <!-- Status Legend -->
+    <div class="cal-legend-wrap reveal">
+      <div class="cal-legend-title">Status</div>
+      <div class="cal-legend">
+        <div class="legend-item"><div class="legend-dot avail-dot"></div>Available</div>
+        <div class="legend-item"><div class="legend-dot booked-dot"></div>Fully Booked</div>
+        <div class="legend-item"><div class="legend-dot pending-dot"></div>Pending</div>
+        <div class="legend-item"><div class="legend-dot today-dot"></div>Today</div>
+        <div class="legend-item"><div class="legend-dot maint-dot"></div>Maintenance</div>
+      </div>
+      <div class="cal-legend-title" style="margin-top:1rem">Rooms</div>
+      <div class="cal-legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#5C8A5C"></div>Talisay (2F Family)</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#4A7A8A"></div>Hauili (1F Family)</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#8A6A3A"></div>Salong (2F Master)</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#8A4A6A"></div>Odorata (1F Master)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ▒▒▒ GALLERY ▒▒▒ -->
+<section id="gallery">
+  <div style="text-align:center;margin-bottom:2.5rem">
+    <div class="section-eyebrow" style="color:#C6A75E">Photo Gallery</div>
+    <h2 class="section-title reveal" style="color:#F5F1E8">Moments at the House</h2>
+    <div class="section-line reveal" style="margin:0 auto"></div>
+  </div>
+  <div class="gallery-grid" id="galleryGrid">
+    <div class="gallery-item reveal" onclick="openLightbox(0)">
+      <img src="Thong/IMG_20260210_153001.jpg" alt="Thong/IMG_20260210_153001.jpg">
+    </div>
+    <div class="gallery-item reveal reveal-delay-1" onclick="openLightbox(1)">
+      <img src="Thong/IMG_20260210_153537.jpg" alt="Thong/IMG_20260210_153537.jpg">
+    </div>
+    <div class="gallery-item reveal reveal-delay-2" onclick="openLightbox(2)">
+      <img src="Thong/IMG_20260210_153919.jpg" alt="Thong/IMG_20260210_153919.jpg">
+    </div>
+    <div class="gallery-item reveal reveal-delay-3" onclick="openLightbox(3)">
+      <img src="Thong/IMG_20260210_155403.jpg" alt="Thong/IMG_20260210_155403.jpg">
+    </div>
+    <div class="gallery-item reveal" onclick="openLightbox(4)">
+      <img src="Thong/IMG_20260210_153406.jpg" alt="Thong/IMG_20260210_153406.jpg">
+    </div>
+    <div class="gallery-item reveal reveal-delay-1" onclick="openLightbox(5)">
+      <img src="Thong/IMG_20260210_153911.jpg" alt="Thong/IMG_20260210_153911.jpg">
+    </div>
+  </div>
+</section>
+
+<!-- ▒▒▒ TESTIMONIALS ▒▒▒ -->
+<section id="testimonials">
+  <div class="testi-container">
+    <!-- LEFT: Testimonial Display -->
+    <div class="testi-left">
+      <div class="section-eyebrow reveal">Guest Reviews</div>
+    <h2 class="section-title reveal" style="font-size:clamp(1.8rem,3vw,2.8rem)">
+           What Our<br>
+          <em class="white-text">Guests Say</em>
+        </h2>
+      <div class="section-line reveal"></div>
+
+      <!-- Featured Card -->
+      <div class="testi-featured reveal" id="testiFeatured">
+        <div class="testi-quote-mark">"</div>
+        <div class="testi-featured-stars" id="testiStars">★★★★★</div>
+        <div class="testi-featured-text" id="testiText">Absolutely enchanting stay. The pine-scented air, the warm wooden interiors — we felt like we were in a fairytale cabin. Will definitely come back!</div>
+        <div class="testi-featured-footer">
+          <div class="testi-avatar" id="testiAvatar">LJ</div>
+          <div class="testi-meta">
+            <div class="testi-featured-author" id="testiAuthor">Lebron James</div>
+            <div class="testi-featured-loc" id="testiLoc">📍 Manila, Philippines</div>
+            <div class="testi-featured-room" id="testiRoom">🛏️ Family Room · 3 nights</div>
+          </div>
+          <div class="testi-verified">✓ Verified Guest</div>
+        </div>
+      </div>
+
+      <!-- Thumbnail Nav -->
+      <div class="testi-thumbs" id="testiThumbs"></div>
+
+      <!-- Prev/Next -->
+      <div class="testi-nav">
+        <button class="testi-nav-btn" onclick="moveTesti(-1)">‹</button>
+        <div class="testi-dots" id="testiDots"></div>
+        <button class="testi-nav-btn" onclick="moveTesti(1)">›</button>
+      </div>
+    </div>
+
+    <!-- RIGHT: Leave a Review Form -->
+    <div class="testi-right reveal">
+      <div class="review-form-header">
+        <div class="section-eyebrow" style="text-align:left">Share Your Experience</div>
+        <h3 class="review-form-title">Leave a Review</h3>
+        <p class="review-form-sub">Tell future guests about your stay with us.</p>
+      </div>
+
+      <!-- Live Preview -->
+      <div class="review-preview" id="reviewPreview" style="display:none">
+        <div class="preview-label">✦ Live Preview</div>
+        <div class="preview-stars" id="previewStars"></div>
+        <div class="preview-text" id="previewText">Your review will appear here...</div>
+        <div class="preview-author" id="previewAuthor">— Your Name</div>
+      </div>
+
+      <form class="review-form" onsubmit="submitReview(event)" id="reviewForm">
+        <div class="rf-grid">
+          <div class="rf-group">
+            <label>Full Name *</label>
+            <input type="text" id="rv-name" placeholder="Juan Dela Cruz" required oninput="updatePreview()"/>
+          </div>
+          <div class="rf-group">
+            <label>Email Address *</label>
+            <input type="email" id="rv-email" placeholder="your@email.com" required/>
+          </div>
+          <div class="rf-group">
+            <label>Room Stayed In *</label>
+            <select id="rv-room" required>
+              <option value="">Select room...</option>
+              <option value="Talisay — 2nd Floor Family Room">🌳 Talisay — 2nd Floor Family Room</option>
+              <option value="Hauili — 1st Floor Family Room">🌿 Hauili — 1st Floor Family Room</option>
+              <option value="Salong — 2nd Floor Master Bedroom">🪵 Salong — 2nd Floor Master Bedroom</option>
+              <option value="Odorata — 1st Floor Master Bedroom">🌺 Odorata — 1st Floor Master Bedroom</option>
+            </select>
+          </div>
+          <div class="rf-group">
+            <label>Location / City</label>
+            <input type="text" id="rv-loc" placeholder="Manila, Philippines"/>
+          </div>
+          <div class="rf-group">
+            <label>Check-in Date</label>
+            <input type="date" id="rv-checkin"/>
+          </div>
+          <div class="rf-group">
+            <label>Check-out Date</label>
+            <input type="date" id="rv-checkout"/>
+          </div>
+        </div>
+
+        <!-- Star Rating -->
+        <div class="rf-group" style="margin-bottom:1rem">
+          <label>Your Rating *</label>
+          <div class="star-selector" id="starSelector">
+            <span class="star-pick" data-val="1">★</span>
+            <span class="star-pick" data-val="2">★</span>
+            <span class="star-pick" data-val="3">★</span>
+            <span class="star-pick" data-val="4">★</span>
+            <span class="star-pick" data-val="5">★</span>
+          </div>
+          <input type="hidden" id="rv-rating" value="0"/>
+        </div>
+
+        <!-- Review Text -->
+        <div class="rf-group" style="margin-bottom:1rem">
+          <label>Your Review *</label>
+          <textarea id="rv-review" rows="4" placeholder="Share your experience — what did you love most about your stay?" required oninput="updatePreview()"></textarea>
+        </div>
+
+        <!-- Image Upload -->
+        <div class="rf-group" style="margin-bottom:1.5rem">
+          <label>Upload Photo <span style="opacity:.5;font-size:11px">(optional)</span></label>
+          <div class="file-upload-area" onclick="document.getElementById('rv-photo').click()">
+            <span id="fileLabel">📷 Click to upload a photo of your stay</span>
+            <input type="file" id="rv-photo" accept="image/*" style="display:none" onchange="handleFileUpload(this)"/>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-review-submit">✦ Submit Review</button>
+      </form>
+
+      <!-- Success Message -->
+      <div class="review-success" id="reviewSuccess" style="display:none">
+        <div class="success-icon">✓</div>
+        <div class="success-title">Thank You!</div>
+        <div class="success-sub">Your review has been submitted and will appear after moderation.</div>
+        <button onclick="resetReviewForm()" class="btn-review-submit" style="margin-top:1rem">Write Another Review</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ▒▒▒ CONTACT ▒▒▒ -->
+<section id="contact">
+  <div class="contact-grid">
+    <div class="contact-info">
+      <div class="section-eyebrow">Get In Touch</div>
+      <h2 class="section-title reveal">Contact & Location</h2>
+      <div class="section-line reveal"></div>
+
+      <div class="contact-item reveal">
+        <div class="contact-icon">👤</div>
+        <div class="contact-item-text">
+          <div class="contact-item-label">Owner / Host</div>
+          <div class="contact-item-val">Thong Monteflor</div>
+        </div>
+      </div>
+      <div class="contact-item reveal">
+        <div class="contact-icon">📞</div>
+        <div class="contact-item-text">
+          <div class="contact-item-label">Phone / WhatsApp</div>
+          <div class="contact-item-val"><a href="tel:+639171234567">+63 917 123 4567</a></div>
+        </div>
+      </div>
+      <div class="contact-item reveal">
+        <div class="contact-icon">✉️</div>
+        <div class="contact-item-text">
+          <div class="contact-item-label">Email</div>
+          <div class="contact-item-val"><a href="mailto:stay@bahayniThong.com">balaynithong.transient@business</a></div>
+          <button class="copy-btn" onclick="copyEmail()">📋 Copy Email</button>
+        </div>
+      </div>
+      <div class="contact-item reveal">
+        <div class="contact-icon">📍</div>
+        <div class="contact-item-text">
+          <div class="contact-item-label">Address</div>
+          <div class="contact-item-val">Lamtang Rd<br>La Trinidad, Benguet</div>
+        </div>
+      </div>
+
+      <div class="quick-btns reveal">
+        <a href="https://wa.me/639171234567" class="quick-btn" target="_blank">💬 WhatsApp</a>
+        <a href="https://m.me/bahayniThong" class="quick-btn" target="_blank">📘 Messenger</a>
+      </div>
+
+      <div class="map-embed reveal">
+       <div class="map-container">
+         <iframe 
+           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3826.687815864769!2d120.54772497586148!3d16.440673984293902!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3391a3005c36bc81%3A0x664a6a74525eebec!2sBalay%20ni%20Thong!5e0!3m2!1sen!2sph!4v1778103175848!5m2!1sen!2sph"
+           allowfullscreen
+           loading="lazy">
+         </iframe>
+       </div>
+      </div>
+    </div>
+
+    <div class="contact-form-box reveal">
+      <div style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:#F5F1E8;margin-bottom:1.5rem;font-weight:400">
+        Send Us a Message
+      </div>
+      <form class="contact-form" onsubmit="sendContactForm(event)">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" placeholder="Your full name" required>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" placeholder="your@email.com" required>
+        </div>
+        <div class="form-group">
+          <label>Subject</label>
+          <input type="text" placeholder="Booking inquiry, questions...">
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea rows="5" placeholder="Tell us about your stay plans..." required></textarea>
+        </div>
+        <button type="submit" class="btn-submit">Send Message ✦</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ▒▒▒ ADMIN PANEL ▒▒▒ -->
+<!-- This section is for demonstration purposes only. In a real application, admin functionality should be implemented securely on the server side. -->
+
+<!-- ▒▒▒ FOOTER ▒▒▒ -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">Bahay ni Thong</div>
+      <div class="footer-tagline">"Where the pines whisper and home feels eternal — your heritage stay in the City of Pines."</div>
+    </div>
+    <div>
+      <div class="footer-col-title">Navigation</div>
+      <ul class="footer-links">
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#rooms">Rooms & Rates</a></li>
+        <li><a href="#availability">Availability</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Stay</div>
+      <ul class="footer-links">
+        <li><a href="#" onclick="openBooking()">Book a Room</a></li>
+        <li><a href="#amenities">Amenities</a></li>
+        <li><a href="#testimonials">Guest Reviews</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Connect</div>
+      <ul class="footer-links">
+        <li><a href="https://wa.me/639171234567" target="_blank">💬 WhatsApp</a></li>
+        <li><a href="#">📘 Facebook</a></li>
+        <li><a href="#">📸 Instagram</a></li>
+        <li><a href="mailto:stay@bahayniThong.com">✉️ Email Us</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2025 Bahay ni Thong. All rights reserved. · Baguio City, Philippines</div>
+    <div class="footer-craft">Crafted with ♥ for the City of Pines</div>
+  </div>
+
+  <!-- === CHATBOT START === -->
+<div id="aiChat">
+
+  <button id="aiToggle">
+    <span id="aiToggleIcon">💬</span>
+    <span id="aiUnreadBadge" style="display:none">1</span>
+  </button>
+
+  <div id="aiBox">
+    <!-- Header -->
+    <div class="ai-header">
+      <div class="ai-header-info">
+        <div class="ai-avatar"><img src="kuyathong.png" alt=""></div>
+        <div>
+          <div class="ai-header-name">Kuya Thong</div>
+          <div class="ai-header-status"><span class="ai-status-dot"></span> Online</div>
+        </div>
+      </div>
+      <div class="ai-header-actions">
+        <button id="aiMinimize" title="Minimize">—</button>
+        <button id="aiClose">✕</button>
+      </div>
+    </div>
+
+    <!-- Messages -->
+    <div id="aiMessages"></div>
+
+    <!-- FAQ Quick Chips -->
+    <div id="aiFAQ">
+      <div class="faq-label">Quick Questions</div>
+      <div class="faq-chips">
+        <button class="faq-chip" data-q="What rooms are available and how much?">🛏️ Room Rates</button>
+        <button class="faq-chip" data-q="What amenities are included?">✨ Amenities</button>
+        <button class="faq-chip" data-q="How do I book a room?">📅 How to Book</button>
+        <button class="faq-chip" data-q="Where are you located?">📍 Location</button>
+        <button class="faq-chip" data-q="What is your cancellation policy?">❌ Cancellation</button>
+        <button class="faq-chip" data-q="How many guests can each room accommodate?">👥 Capacity</button>
+      </div>
+    </div>
+
+    <!-- Inline Booking Form -->
+    <div id="aiBookingForm" style="display:none">
+      <div class="ai-form-title">📅 Quick Booking Request</div>
+      <div class="ai-form-grid">
+        <input type="text"   id="bf-name"    placeholder="Your Name *" required />
+        <input type="tel"    id="bf-phone"   placeholder="Phone / WhatsApp *" required />
+        <input type="email"  id="bf-email"   placeholder="Email Address" />
+        <select id="bf-room">
+          <option value="Family Room (₱3,500/night)">Family Room — ₱3,500/night</option>
+          <option value="Master Room (₱4,500/night)">Master Room — ₱4,500/night</option>
+        </select>
+        <input type="date"   id="bf-checkin"  placeholder="Check-in *" />
+        <input type="date"   id="bf-checkout" placeholder="Check-out *" />
+        <input type="number" id="bf-guests"   placeholder="No. of Guests" min="1" max="8" />
+        <textarea id="bf-notes" placeholder="Special requests (optional)" rows="2"></textarea>
+      </div>
+      <div class="ai-form-actions">
+        <button id="bf-cancel">Cancel</button>
+        <button id="bf-submit">Send Request ➤</button>
+      </div>
+    </div>
+
+    <!-- Input -->
+    <div class="ai-input">
+      <button id="aiBFBtn" title="Fill booking form">📅</button>
+      <input type="text" id="aiInput" placeholder="Ask about rooms, pricing, availability..." />
+      <button id="aiSend">➤</button>
+    </div>
+  </div>
+
+</div>
+<!-- === CHATBOT END === -->
+</footer>
+
+<!-- ▒▒▒ BOOKING MODAL ▒▒▒ -->
+<div id="bookingModal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div class="modal-title">Reserve Your Stay</div>
+      <button class="modal-close" onclick="closeBooking()">✕</button>
+    </div>
+    <div class="modal-body">
+      <form onsubmit="submitBooking(event)">
+        <div class="form-grid">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" placeholder="Juan" required>
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" placeholder="Dela Cruz" required>
+          </div>
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" placeholder="juandelacruz@email.com" required>
+          </div>
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" placeholder="+63 9XX XXX XXXX" required>
+          </div>
+          <div class="form-group">
+            <label>Room Type</label>
+            <select id="modalRoom" onchange="calcPrice()">
+              <option value="Family Room">Family Room — ₱3,500/night</option>
+              <option value="Smart Lock Master Room">Smart Lock Master Room — ₱4,500/night</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Number of Guests</label>
+            <input type="number" id="numGuests" min="1" max="8" value="2" onchange="calcPrice()">
+          </div>
+          <div class="form-group">
+            <label>Check-In Date</label>
+            <input type="date" id="checkIn" onchange="calcPrice()" required>
+          </div>
+          <div class="form-group">
+            <label>Check-Out Date</label>
+            <input type="date" id="checkOut" onchange="calcPrice()" required>
+          </div>
+          <div class="form-group full">
+            <label>Special Requests</label>
+            <textarea placeholder="Any special requests, celebrations, or notes for the host..."></textarea>
+          </div>
+        </div>
+        <div class="price-summary" id="priceSummary" style="display:none">
+          <div class="price-row"><span>Room Rate</span><span class="price-row-val" id="priceRate">—</span></div>
+          <div class="price-row"><span>Number of Nights</span><span class="price-row-val" id="priceNights">—</span></div>
+          <div class="price-row"><span>Subtotal</span><span class="price-row-val" id="priceSub">—</span></div>
+          <div class="price-row total"><span>Total Amount</span><span class="price-row-val" id="priceTotal">—</span></div>
+          <div class="price-row" style="color:#C6A75E"><span>💰 50% Downpayment</span><span class="price-row-val" id="priceDown">—</span></div>
+        </div>
+        <div class="terms-check">
+          <input type="checkbox" id="termsCheck" required>
+          <label for="termsCheck">I agree to the Terms & Conditions. I understand that a 50% downpayment is required to confirm my booking. Cancellations must be made at least 48 hours before check-in.</label>
+        </div>
+        <button type="submit" class="btn-submit">✦ Confirm Reservation</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- ▒▒▒ CONFIRMATION SCREEN ▒▒▒ -->
+<div id="confirmScreen">
+  <div class="confirm-icon">🏡</div>
+  <div class="confirm-title">Booking Submitted!</div>
+  <p class="confirm-sub">
+    Your reservation request has been sent to Bahay ni Thong.<br>
+    A confirmation email will be sent to your inbox shortly.<br>
+    The owner will contact you within 24 hours to finalize your stay.
+  </p>
+  <button class="btn-confirm-close" onclick="closeConfirm()">Back to Home</button>
+</div>
+
+<!-- ▒▒▒ LIGHTBOX ▒▒▒ -->
+<div id="lightbox">
+  <button class="lb-close" onclick="closeLightbox()">✕</button>
+  <button class="lb-prev" onclick="lbNav(-1)">‹</button>
+  <img class="lb-img" id="lbImg" src="" alt="">
+  <button class="lb-next" onclick="lbNav(1)">›</button>
+</div>
+
+<!-- ▒▒▒ FLOATING BUTTONS ▒▒▒ -->
+<button class="float-book" onclick="openBooking()">✦ Book Now</button>
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<!-- === CHATBOT START === -->
+ <script src="script.js"></script>
+</body>
+</html>

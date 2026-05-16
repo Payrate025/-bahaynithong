@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bahay ni Thong — Heritage Transient House, Baguio City</title>
+<meta name="description" content="Bahay ni Thong – Experience comfort in the City of Pines. A modern heritage transient house in Baguio City, Philippines.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ▒▒▒ LOADING SCREEN ▒▒▒ -->
+<div id="loader">
+  <div class="loader-logo">Bahay ni Thong</div>
+  <div class="loader-sub">Baguio City, Philippines</div>
+  <div class="loader-bar"><div class="loader-fill"></div></div>
+</div>
+
+<!-- ▒▒▒ NAVBAR ▒▒▒ -->
+<nav id="mainNav">
+  <a href="#" class="nav-logo">Bahay ni Thong<span>Heritage Transient House</span></a>
+  <ul class="nav-links">
+    <li><a href="#about" class="nav-link">About</a></li>
+    <li><a href="#rooms" class="nav-link">Rooms</a></li>
+    <li><a href="#amenities" class="nav-link">Amenities</a></li>
+    <li><a href="#availability" class="nav-link">Availability</a></li>
+    <li><a href="#gallery" class="nav-link">Gallery</a></li>
+    <li><a href="#contact" class="nav-link">Contact</a></li>
+    
+  </ul>
+  <div class="nav-actions">
+    <button class="dark-toggle" id="darkToggle" title="Toggle dark mode">🌙</button>
+    <button class="btn-nav-book" onclick="openBooking()">Book Now</button>
+    <div class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="mobileClose">✕</button>
+  <a href="#about" onclick="closeMobile()">About</a>
+  <a href="#rooms" onclick="closeMobile()">Rooms</a>
+  <a href="#amenities" onclick="closeMobile()">Amenities</a>
+  <a href="#availability" onclick="closeMobile()">Availability</a>
+  <a href="#gallery" onclick="closeMobile()">Gallery</a>
+  <a href="#contact" onclick="closeMobile()">Contact</a>
+  <a href="#" onclick="openBooking();closeMobile()" style="color:#C6A75E">Book Now</a>
+</div>
+
+<!-- ▒▒▒ HERO ▒▒▒ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">✦ Baguio City, Philippines ✦</div>
+    <h1 class="hero-title">
+      Experience Comfort<br>in the <em>City of Pines</em>
+    </h1>
+    <p class="hero-subtitle">
+      A modern heritage home where mountain tranquility<br>meets refined Filipino-Spanish elegance
+    </p>
+    <div class="hero-ctas">
+      <button class="btn-primary" onclick="openBooking()">✦ Book Now</button>
+      <a href="#rooms" class="btn-outline">View Rooms</a>
+      <a href="#availability" class="btn-outline">Check Availability</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ▒▒▒ STATS STRIP ▒▒▒ -->
+<div class="stats-strip">
+  <div class="stat-item reveal">
+    <div class="stat-num" data-count="5">0</div>
+    <div class="stat-label">Happy Guests</div>
+  </div>
+  <div class="stat-item reveal reveal-delay-1">
+    <div class="stat-num" data-count="3">0</div>
+    <div class="stat-label">Months Hosting</div>
+  </div>
+  <div class="stat-item reveal reveal-delay-2">
+    <div class="stat-num" data-count="4">0</div>
+    <div class="stat-label">Room Suites</div>
+  </div>
+  <div class="stat-item reveal reveal-delay-3">
+    <div class="stat-num" data-count="98">0</div>
+    <div class="stat-label">% Satisfaction</div>
+  </div>
+</div>
+
+<!-- ▒▒▒ ABOUT ▒▒▒ -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-img-stack reveal">
+      <div class="about-gold-block"></div>
+      <img class="about-img-main" src="bht.png" alt="Bahay ni Thong Exterior">
+      <img class="about-img-accent" src="interior.jpg" alt="Interior detail">
+    </div>
+    <div class="reveal reveal-delay-1">
+      <div class="section-eyebrow">Our Story</div>
+      <h2 class="section-title">A Heritage Home<br>in the Mountains</h2>
+      <div class="section-line"></div>
+      <p class="section-desc">
+        Bahay ni Thong is more than a place to stay — it is a sanctuary nestled in the cool highlands of Baguio City. Born from a love of Filipino heritage and mountain living, our home blends warm wood interiors, stone accents, and modern comforts into one unforgettable experience.
+      </p>
+      <blockquote class="about-quote">
+        "We built this space so families and friends could gather, breathe the pine-scented air, and feel truly at home."
+      </blockquote>
+      <p class="section-desc">
+        Each room is thoughtfully designed to accommodate groups — from intimate family getaways to barkada adventures. With smart locks, full kitchen access, and the gentle hum of mountain breeze, Bahay ni Thong is your home away from home in the City of Pines.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ▒▒▒ ROOMS ▒▒▒ -->
+<section id="rooms">
+  <div style="text-align:center;margin-bottom:3rem">
+    <div class="section-eyebrow">Accommodations</div>
+    <h2 class="section-title">Rooms & Rates</h2>
+    <div class="section-line" style="margin:0 auto"></div>
+    <p class="section-desc" style="margin:0 auto;color:rgba(245,241,232,0.65)">Thoughtfully designed spaces for every kind of stay</p>
+  </div>
+  <div class="rooms-grid">
+
+    <!-- Room 1 -->
+    <div class="room-card reveal">
+      <div class="room-img-slider">
+        <div class="room-imgs" id="slider1">
+          <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=700&q=80" alt="Family Room">
+          <img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?w=700&q=80" alt="Family Room Beds">
+          <img src="https://images.unsplash.com/photo-1556020685-ae41abfc9365?w=700&q=80" alt="Family Room Space">
+        </div>
+        <button class="slider-btn slider-prev" onclick="slideRoom('slider1','prev')">‹</button>
+        <button class="slider-btn slider-next" onclick="slideRoom('slider1','next')">›</button>
+        <div class="slider-dots" id="dots1">
+          <span class="slider-dot active" onclick="goToSlide('slider1','dots1',0)"></span>
+          <span class="slider-dot" onclick="goToSlide('slider1','dots1',1)"></span>
+          <span class="slider-dot" onclick="goToSlide('slider1','dots1',2)"></span>
+        </div>
+      </div>
+      <div class="room-info">
+        <div class="room-name">Family Room</div>
+        <div class="room-capacity">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+          Up to 8 Guests · 2 Doors · Double Deck Beds
+        </div>
+        <div class="room-amenities">
+          <span class="amenity-tag">WiFi</span>
+          <span class="amenity-tag">Double Deck ×4</span>
+          <span class="amenity-tag">2 Doors</span>
+          <span class="amenity-tag">Hot Shower</span>
+          <span class="amenity-tag">Kitchen Access</span>
+          <span class="amenity-tag">Parking</span>
+        </div>
+        <div class="room-footer">
+          <div class="room-price">
+            <div class="price-amount">₱3,500</div>
+            <div class="price-per">Per Night</div>
+          </div>
+          <button class="btn-reserve" onclick="openBooking('Family Room')">Reserve Now →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Room 2 -->
+    <div class="room-card reveal reveal-delay-1">
+      <div class="room-badge">✦ Premium</div>
+      <div class="room-img-slider">
+        <div class="room-imgs" id="slider2">
+          <img src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=700&q=80" alt="Master Room">
+          <img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=700&q=80" alt="Master Bedroom">
+          <img src="https://images.unsplash.com/photo-1613977257363-707ba9348227?w=700&q=80" alt="Master Bath">
+        </div>
+        <button class="slider-btn slider-prev" onclick="slideRoom('slider2','prev')">‹</button>
+        <button class="slider-btn slider-next" onclick="slideRoom('slider2','next')">›</button>
+        <div class="slider-dots" id="dots2">
+          <span class="slider-dot active" onclick="goToSlide('slider2','dots2',0)"></span>
+          <span class="slider-dot" onclick="goToSlide('slider2','dots2',1)"></span>
+          <span class="slider-dot" onclick="goToSlide('slider2','dots2',2)"></span>
+        </div>
+      </div>
+      <div class="room-info">
+        <div class="room-name">Smart Lock Master Room</div>
+        <div class="room-capacity">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+          Up to 4 Guests · 2 Master Bedrooms · Smart Lock
+        </div>
+        <div class="room-amenities">
+          <span class="amenity-tag">🔐 Smart Lock</span>
+          <span class="amenity-tag">WiFi</span>
+          <span class="amenity-tag">2 Master Beds</span>
+          <span class="amenity-tag">Hot Shower</span>
+          <span class="amenity-tag">Kitchen Access</span>
+          <span class="amenity-tag">Premium</span>
+        </div>
+        <div class="room-footer">
+          <div class="room-price">
+            <div class="price-amount">₱4,500</div>
+            <div class="price-per">Per Night</div>
+          </div>
+          <button class="btn-reserve" onclick="openBooking('Smart Lock Master Room')">Reserve Now →</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ▒▒▒ AMENITIES ▒▒▒ -->
+<section id="amenities">
+  <div style="text-align:center;margin-bottom:3rem">
+    <div class="section-eyebrow">What We Offer</div>
+    <h2 class="section-title">Amenities</h2>
+    <div class="section-line" style="margin:0 auto"></div>
+  </div>
+  <div class="amenities-grid">
+    <div class="amenity-card reveal"><span class="amenity-icon">📶</span><div class="amenity-name">High-Speed WiFi</div></div>
+    <div class="amenity-card reveal reveal-delay-1"><span class="amenity-icon">🍳</span><div class="amenity-name">Kitchen Access</div></div>
+    <div class="amenity-card reveal reveal-delay-2"><span class="amenity-icon">🔐</span><div class="amenity-name">Smart Lock</div></div>
+    <div class="amenity-card reveal reveal-delay-3"><span class="amenity-icon">🚗</span><div class="amenity-name">Free Parking</div></div>
+    <div class="amenity-card reveal"><span class="amenity-icon">🚿</span><div class="amenity-name">Hot & Cold Shower</div></div>
+    <div class="amenity-card reveal reveal-delay-1"><span class="amenity-icon">🌲</span><div class="amenity-name">Mountain Breeze</div></div>
+    <div class="amenity-card reveal reveal-delay-2"><span class="amenity-icon">🔒</span><div class="amenity-name">24/7 Security</div></div>
+    <div class="amenity-card reveal reveal-delay-3"><span class="amenity-icon">🛏️</span><div class="amenity-name">Fresh Linens</div></div>
+  </div>
+</section>
+
+<!-- ▒▒▒ AVAILABILITY CALENDAR ▒▒▒ -->
+<section id="availability">
+  <div class="avail-container">
+    <div class="section-eyebrow reveal">Live Booking Schedule</div>
+    <h2 class="section-title reveal">Availability Calendar</h2>
+    <div class="section-line reveal"></div>
+    <p class="section-desc reveal" style="margin-bottom:2.5rem">Check real-time availability before making your reservation</p>
+    <div class="avail-controls reveal">
+      <select class="avail-select" id="roomFilter" onchange="renderCalendar()">
+        <option value="all">All Rooms</option>
+        <option value="family">Family Room</option>
+        <option value="master">Smart Lock Master Room</option>
+      </select>
+      <div class="cal-nav">
+        <button class="cal-nav-btn" onclick="changeMonth(-1)">‹</button>
+        <div class="cal-month" id="calMonthLabel"></div>
+        <button class="cal-nav-btn" onclick="changeMonth(1)">›</button>
+      </div>
+    </div>
+    <div class="calendar reveal">
+      <div class="cal-header">
+        <div class="cal-day-name">Sun</div>
+        <div class="cal-day-name">Mon</div>
+        <div class="cal-day-name">Tue</div>
+        <div class="cal-day-name">Wed</div>
+        <div class="cal-day-name">Thu</div>
+        <div class="cal-day-name">Fri</div>
+        <div class="cal-day-name">Sat</div>
+      </div>
+      <div class="cal-body" id="calBody"></div>
+    </div>
+    <div class="cal-legend reveal">
+      <div class="legend-item"><div class="legend-dot" style="background:#4CAF50"></div>Available</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#B04A4A"></div>Booked</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#E0A106"></div>Pending</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#C6A75E"></div>Today</div>
+    </div>
+  </div>
+</section>
+
+<!-- ▒▒▒ GALLERY ▒▒▒ -->
+<section id="gallery">
+  <div style="text-align:center;margin-bottom:2.5rem">
+    <div class="section-eyebrow" style="color:#C6A75E">Photo Gallery</div>
+    <h2 class="section-title reveal" style="color:#F5F1E8">Moments at the House</h2>
+    <div class="section-line reveal" style="margin:0 auto"></div>
+  </div>
+  <div class="gallery-grid" id="galleryGrid">
+    <div class="gallery-item reveal" onclick="openLightbox(0)">
+      <img src="https://images.unsplash.com/photo-1510798831971-661eb04b3739?w=900&q=80" alt="Baguio mountain view">
+    </div>
+    <div class="gallery-item reveal reveal-delay-1" onclick="openLightbox(1)">
+      <img src="https://images.unsplash.com/photo-1560448204-603b3fc33ddc?w=600&q=80" alt="Living room">
+    </div>
+    <div class="gallery-item reveal reveal-delay-2" onclick="openLightbox(2)">
+      <img src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=600&q=80" alt="Bedroom">
+    </div>
+    <div class="gallery-item reveal reveal-delay-3" onclick="openLightbox(3)">
+      <img src="https://images.unsplash.com/photo-1556020685-ae41abfc9365?w=900&q=80" alt="Group area">
+    </div>
+    <div class="gallery-item reveal" onclick="openLightbox(4)">
+      <img src="https://images.unsplash.com/photo-1588854337236-6889d631faa8?w=600&q=80" alt="Kitchen">
+    </div>
+    <div class="gallery-item reveal reveal-delay-1" onclick="openLightbox(5)">
+      <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80" alt="Mountain pine">
+    </div>
+  </div>
+</section>
+
+<!-- ▒▒▒ TESTIMONIALS ▒▒▒ -->
+<section id="testimonials">
+  <div style="max-width:1200px;margin:0 auto">
+    <div class="section-eyebrow reveal">Guest Reviews</div>
+    <h2 class="section-title reveal">What Our Guests Say</h2>
+    <div class="section-line reveal"></div>
+    <div style="overflow:hidden;margin-top:2rem">
+      <div class="testi-track" id="testiTrack">
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <div class="testi-text">"Absolutely enchanting stay. The pine-scented air, the warm wooden interiors — we felt like we were in a fairytale cabin. Will definitely come back!"</div>
+          <div class="testi-author">Lebron James</div>
+          <div class="testi-loc">Manila, Philippines</div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <div class="testi-text">"Perfect for our family reunion. The Family Room fit all 8 of us comfortably. The hosts were incredibly responsive and the location is ideal."</div>
+          <div class="testi-author">Kobe Bryant</div>
+          <div class="testi-loc">Quezon City, Philippines</div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <div class="testi-text">"The Smart Lock Master Room exceeded all expectations. Modern, clean, and the mountain breeze is unbeatable. Highly recommended for couples!"</div>
+          <div class="testi-author">Michael Jordan</div>
+          <div class="testi-loc">Chicago, USA</div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <div class="testi-text">"We celebrated our anniversary here and it was magical. The heritage aesthetic with modern comforts is a perfect balance. Bahay ni Thong is a gem!"</div>
+          <div class="testi-author">Adolfo & Cerezo</div>
+          <div class="testi-loc">Cebu, Philippines</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-controls">
+      <button class="testi-btn" onclick="scrollTesti(-1)">‹</button>
+      <button class="testi-btn" onclick="scrollTesti(1)">›</button>
+    </div>
+  </div>
+</section>
+
+<!-- ▒▒▒ CONTACT ▒▒▒ -->
+<section id="contact">
+  <div class="contact-grid">
+    <div class="contact-info">
+      <div class="section-eyebrow">Get In Touch</div>
+      <h2 class="section-title reveal">Contact & Location</h2>
+      <div class="section-line reveal"></div>
+
+      <div class="contact-item reveal">
+        <div class="contact-icon">👤</div>
+        <div class="contact-item-text">
+          <div class="contact-item-label">Owner / Host</div>
+          <div class="contact-item-val">Thong Reyes</div>
+        </div>
+      </div>
+      <div class="contact-item reveal">
+        <div class="contact-icon">📞</div>
+        <div class="contact-item-text">
+          <div class="contact-item-label">Phone / WhatsApp</div>
+          <div class="contact-item-val"><a href="tel:+639171234567">+63 917 123 4567</a></div>
+        </div>
+      </div>
+      <div class="contact-item reveal">
+        <div class="contact-icon">✉️</div>
+        <div class="contact-item-text">
+          <div class="contact-item-label">Email</div>
+          <div class="contact-item-val"><a href="mailto:stay@bahayniThong.com">stay@bahayniThong.com</a></div>
+          <button class="copy-btn" onclick="copyEmail()">📋 Copy Email</button>
+        </div>
+      </div>
+      <div class="contact-item reveal">
+        <div class="contact-icon">📍</div>
+        <div class="contact-item-text">
+          <div class="contact-item-label">Address</div>
+          <div class="contact-item-val">Upper QM, Baguio City<br>Benguet, Philippines 2600</div>
+        </div>
+      </div>
+
+      <div class="quick-btns reveal">
+        <a href="https://wa.me/639171234567" class="quick-btn" target="_blank">💬 WhatsApp</a>
+        <a href="https://m.me/bahayniThong" class="quick-btn" target="_blank">📘 Messenger</a>
+      </div>
+
+      <div class="map-embed reveal">
+        <div class="map-placeholder">
+          <span class="map-pin">📍</span>
+          <span>Baguio City, Benguet</span>
+          <span style="font-size:0.7rem;opacity:0.6">Embed Google Maps here</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form-box reveal">
+      <div style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:#F5F1E8;margin-bottom:1.5rem;font-weight:400">
+        Send Us a Message
+      </div>
+      <form class="contact-form" onsubmit="sendContactForm(event)">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" placeholder="Your full name" required>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" placeholder="your@email.com" required>
+        </div>
+        <div class="form-group">
+          <label>Subject</label>
+          <input type="text" placeholder="Booking inquiry, questions...">
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea rows="5" placeholder="Tell us about your stay plans..." required></textarea>
+        </div>
+        <button type="submit" class="btn-submit">Send Message ✦</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ▒▒▒ ADMIN PANEL ▒▒▒ -->
+<!-- ▒▒▒ FOOTER ▒▒▒ -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">Bahay ni Thong</div>
+      <div class="footer-tagline">"Where the pines whisper and home feels eternal — your heritage stay in the City of Pines."</div>
+    </div>
+    <div>
+      <div class="footer-col-title">Navigation</div>
+      <ul class="footer-links">
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#rooms">Rooms & Rates</a></li>
+        <li><a href="#availability">Availability</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Stay</div>
+      <ul class="footer-links">
+        <li><a href="#" onclick="openBooking()">Book a Room</a></li>
+        <li><a href="#amenities">Amenities</a></li>
+        <li><a href="#testimonials">Guest Reviews</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Connect</div>
+      <ul class="footer-links">
+        <li><a href="https://wa.me/639171234567" target="_blank">💬 WhatsApp</a></li>
+        <li><a href="#">📘 Facebook</a></li>
+        <li><a href="#">📸 Instagram</a></li>
+        <li><a href="mailto:stay@bahayniThong.com">✉️ Email Us</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2025 Bahay ni Thong. All rights reserved. · Baguio City, Philippines</div>
+    <div class="footer-craft">Crafted with ♥ for the City of Pines</div>
+  </div>
+
+  <!-- === CHATBOT START === -->
+<div id="aiChat">
+
+  <button id="aiToggle">
+    <span id="aiToggleIcon">💬</span>
+    <span id="aiUnreadBadge" style="display:none">1</span>
+  </button>
+
+  <div id="aiBox">
+    <!-- Header -->
+    <div class="ai-header">
+      <div class="ai-header-info">
+        <div class="ai-avatar"><img src="kuyathong.png" alt=""></div>
+        <div>
+          <div class="ai-header-name">Kuya Thong</div>
+          <div class="ai-header-status"><span class="ai-status-dot"></span> Online</div>
+        </div>
+      </div>
+      <div class="ai-header-actions">
+        <button id="aiMinimize" title="Minimize">—</button>
+        <button id="aiClose">✕</button>
+      </div>
+    </div>
+
+    <!-- Messages -->
+    <div id="aiMessages"></div>
+
+    <!-- FAQ Quick Chips -->
+    <div id="aiFAQ">
+      <div class="faq-label">Quick Questions</div>
+      <div class="faq-chips">
+        <button class="faq-chip" data-q="What rooms are available and how much?">🛏️ Room Rates</button>
+        <button class="faq-chip" data-q="What amenities are included?">✨ Amenities</button>
+        <button class="faq-chip" data-q="How do I book a room?">📅 How to Book</button>
+        <button class="faq-chip" data-q="Where are you located?">📍 Location</button>
+        <button class="faq-chip" data-q="What is your cancellation policy?">❌ Cancellation</button>
+        <button class="faq-chip" data-q="How many guests can each room accommodate?">👥 Capacity</button>
+      </div>
+    </div>
+
+    <!-- Inline Booking Form -->
+    <div id="aiBookingForm" style="display:none">
+      <div class="ai-form-title">📅 Quick Booking Request</div>
+      <div class="ai-form-grid">
+        <input type="text"   id="bf-name"    placeholder="Your Name *" required />
+        <input type="tel"    id="bf-phone"   placeholder="Phone / WhatsApp *" required />
+        <input type="email"  id="bf-email"   placeholder="Email Address" />
+        <select id="bf-room">
+          <option value="Family Room (₱3,500/night)">Family Room — ₱3,500/night</option>
+          <option value="Master Room (₱4,500/night)">Master Room — ₱4,500/night</option>
+        </select>
+        <input type="date"   id="bf-checkin"  placeholder="Check-in *" />
+        <input type="date"   id="bf-checkout" placeholder="Check-out *" />
+        <input type="number" id="bf-guests"   placeholder="No. of Guests" min="1" max="8" />
+        <textarea id="bf-notes" placeholder="Special requests (optional)" rows="2"></textarea>
+      </div>
+      <div class="ai-form-actions">
+        <button id="bf-cancel">Cancel</button>
+        <button id="bf-submit">Send Request ➤</button>
+      </div>
+    </div>
+
+    <!-- Input -->
+    <div class="ai-input">
+      <button id="aiBFBtn" title="Fill booking form">📅</button>
+      <input type="text" id="aiInput" placeholder="Ask about rooms, pricing, availability..." />
+      <button id="aiSend">➤</button>
+    </div>
+  </div>
+
+</div>
+<!-- === CHATBOT END === -->
+</footer>
+
+<!-- ▒▒▒ BOOKING MODAL ▒▒▒ -->
+<div id="bookingModal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div class="modal-title">Reserve Your Stay</div>
+      <button class="modal-close" onclick="closeBooking()">✕</button>
+    </div>
+    <div class="modal-body">
+      <form onsubmit="submitBooking(event)">
+        <div class="form-grid">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" placeholder="Juan" required>
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" placeholder="Dela Cruz" required>
+          </div>
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" placeholder="juan@email.com" required>
+          </div>
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" placeholder="+63 9XX XXX XXXX" required>
+          </div>
+          <div class="form-group">
+            <label>Room Type</label>
+            <select id="modalRoom" onchange="calcPrice()">
+              <option value="Family Room">Family Room — ₱3,500/night</option>
+              <option value="Smart Lock Master Room">Smart Lock Master Room — ₱4,500/night</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Number of Guests</label>
+            <input type="number" id="numGuests" min="1" max="8" value="2" onchange="calcPrice()">
+          </div>
+          <div class="form-group">
+            <label>Check-In Date</label>
+            <input type="date" id="checkIn" onchange="calcPrice()" required>
+          </div>
+          <div class="form-group">
+            <label>Check-Out Date</label>
+            <input type="date" id="checkOut" onchange="calcPrice()" required>
+          </div>
+          <div class="form-group full">
+            <label>Special Requests</label>
+            <textarea placeholder="Any special requests, celebrations, or notes for the host..."></textarea>
+          </div>
+        </div>
+        <div class="price-summary" id="priceSummary" style="display:none">
+          <div class="price-row"><span>Room Rate</span><span class="price-row-val" id="priceRate">—</span></div>
+          <div class="price-row"><span>Number of Nights</span><span class="price-row-val" id="priceNights">—</span></div>
+          <div class="price-row"><span>Subtotal</span><span class="price-row-val" id="priceSub">—</span></div>
+          <div class="price-row total"><span>Total Amount</span><span class="price-row-val" id="priceTotal">—</span></div>
+          <div class="price-row" style="color:#C6A75E"><span>💰 50% Downpayment</span><span class="price-row-val" id="priceDown">—</span></div>
+        </div>
+        <div class="terms-check">
+          <input type="checkbox" id="termsCheck" required>
+          <label for="termsCheck">I agree to the Terms & Conditions. I understand that a 50% downpayment is required to confirm my booking. Cancellations must be made at least 48 hours before check-in.</label>
+        </div>
+        <button type="submit" class="btn-submit">✦ Confirm Reservation</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- ▒▒▒ CONFIRMATION SCREEN ▒▒▒ -->
+<div id="confirmScreen">
+  <div class="confirm-icon">✅</div>
+  <div class="confirm-title" id="confirmTitle">Booking Received!</div>
+  <p class="confirm-sub" id="confirmMsg">Thank you po! Your reservation request has been sent.<br>A confirmation email with payment details has been sent to your inbox.</p>
+  <div id="confirmDetails" style="background:rgba(198,167,94,0.12);border:1px solid rgba(198,167,94,0.3);border-radius:10px;padding:16px 20px;margin:16px 0;text-align:left;font-size:13px;line-height:2.3;display:none">
+    <div><span style="opacity:.55;width:130px;display:inline-block">Booking Ref</span><strong id="confirmRef" style="color:#C6A75E">—</strong></div>
+    <div><span style="opacity:.55;width:130px;display:inline-block">Room</span><span id="confirmRoom">—</span></div>
+    <div><span style="opacity:.55;width:130px;display:inline-block">Check-in</span><span id="confirmCheckin">—</span></div>
+    <div><span style="opacity:.55;width:130px;display:inline-block">Check-out</span><span id="confirmCheckout">—</span></div>
+    <div><span style="opacity:.55;width:130px;display:inline-block">Nights</span><span id="confirmNights">—</span></div>
+    <div><span style="opacity:.55;width:130px;display:inline-block">Total</span><strong id="confirmTotal">—</strong></div>
+    <div><span style="opacity:.55;width:130px;display:inline-block">Downpayment</span><strong id="confirmDP" style="color:#C6A75E">—</strong></div>
+  </div>
+  <p style="font-size:12px;opacity:.5;margin-bottom:20px" id="confirmEmailNote"></p>
+  <button class="btn-confirm-close" onclick="closeConfirm()">Back to Home</button>
+</div>
+
+<!-- ▒▒▒ LIGHTBOX ▒▒▒ -->
+<div id="lightbox">
+  <button class="lb-close" onclick="closeLightbox()">✕</button>
+  <button class="lb-prev" onclick="lbNav(-1)">‹</button>
+  <img class="lb-img" id="lbImg" src="" alt="">
+  <button class="lb-next" onclick="lbNav(1)">›</button>
+</div>
+
+<!-- ▒▒▒ FLOATING BUTTONS ▒▒▒ -->
+<button class="float-book" onclick="openBooking()">✦ Book Now</button>
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<style>
+.toggle-switch{position:relative;display:inline-block;width:44px;height:22px}
+.toggle-switch input{opacity:0;width:0;height:0}
+.toggle-slider{
+  position:absolute;cursor:pointer;inset:0;
+  background:rgba(245,241,232,0.15);border-radius:11px;transition:0.3s;
+}
+.toggle-slider:before{
+  content:'';position:absolute;height:16px;width:16px;
+  left:3px;bottom:3px;background:#fff;border-radius:50%;transition:0.3s;
+}
+.toggle-switch input:checked + .toggle-slider{background:#C6A75E}
+.toggle-switch input:checked + .toggle-slider:before{transform:translateX(22px)}
+</style>
+
+<!-- === CHATBOT START === -->
+<script type="text/javascript">
+// ─── CONFIG ───────────────────────────────────────────────
+const AI_SERVER_URL = "http://localhost:3000/chat";
+
+// ─── ELEMENTS ─────────────────────────────────────────────
+const toggle   = document.getElementById("aiToggle");
+const box      = document.getElementById("aiBox");
+const closeBtn = document.getElementById("aiClose");
+const minimize = document.getElementById("aiMinimize");
+const send     = document.getElementById("aiSend");
+const input    = document.getElementById("aiInput");
+const messages = document.getElementById("aiMessages");
+const badge    = document.getElementById("aiUnreadBadge");
+const bfBtn    = document.getElementById("aiBFBtn");
+const bfForm   = document.getElementById("aiBookingForm");
+
+// ─── STATE ────────────────────────────────────────────────
+let isOpen     = false;
+let hasGreeted = false;
+let isSending  = false;
+let chatHistory = [];
+let guestMemory = {}; // remembers name, room preference, etc.
+
+// ─── CHAT LOG (for admin dashboard) ───────────────────────
+function logConversation(user, bot) {
+  const logs = JSON.parse(localStorage.getItem("chatLogs") || "[]");
+  logs.push({ ts: new Date().toISOString(), user, bot, guest: guestMemory.name || "Anonymous" });
+  localStorage.setItem("chatLogs", JSON.stringify(logs));
+  localStorage.setItem("chatStats", JSON.stringify({
+    total: logs.length,
+    lastActive: new Date().toISOString(),
+    bookingRequests: (JSON.parse(localStorage.getItem("bookingRequests") || "[]")).length
+  }));
+}
+
+// ─── OPEN / CLOSE ─────────────────────────────────────────
+toggle.onclick = () => {
+  isOpen = !isOpen;
+  box.style.display = isOpen ? "flex" : "none";
+  box.style.flexDirection = "column";
+  badge.style.display = "none";
+  if (isOpen && !hasGreeted) {
+    hasGreeted = true;
+    setTimeout(() => {
+      addMsg("Mabuhay po! 👋 I am Kuya Thong, your dedicated assistant for Bahay ni Thong. I can help you with room inquiries, rates, availability, and reservations. How may I assist you today?", "bot");
+    }, 400);
+  }
+};
+
+closeBtn.onclick = () => { isOpen = false; box.style.display = "none"; };
+minimize.onclick = () => { isOpen = false; box.style.display = "none"; };
+
+// ─── ADD MESSAGE ──────────────────────────────────────────
+function addMsg(text, type) {
+  const msg = document.createElement("div");
+  msg.className = "ai-msg " + type;
+
+  // Render line breaks
+  text.split("\n").forEach((line, i) => {
+    if (i > 0) msg.appendChild(document.createElement("br"));
+    msg.appendChild(document.createTextNode(line));
+  });
+
+  // Timestamp
+  const ts = document.createElement("div");
+  ts.className = "ai-msg-time";
+  ts.textContent = new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+  msg.appendChild(ts);
+
+  messages.appendChild(msg);
+  messages.scrollTop = messages.scrollHeight;
+  return msg;
+}
+
+// ─── FAQ CHIPS ────────────────────────────────────────────
+document.querySelectorAll(".faq-chip").forEach(chip => {
+  chip.addEventListener("click", () => {
+    input.value = chip.dataset.q;
+    sendMessage();
+  });
+});
+
+// ─── BOOKING FORM ─────────────────────────────────────────
+bfBtn.onclick = () => {
+  bfForm.style.display = bfForm.style.display === "none" ? "block" : "none";
+};
+document.getElementById("bf-cancel").onclick = () => {
+  bfForm.style.display = "none";
+};
+document.getElementById("bf-submit").onclick = () => {
+  const name     = document.getElementById("bf-name").value.trim();
+  const phone    = document.getElementById("bf-phone").value.trim();
+  const email    = document.getElementById("bf-email").value.trim();
+  const room     = document.getElementById("bf-room").value;
+  const checkin  = document.getElementById("bf-checkin").value;
+  const checkout = document.getElementById("bf-checkout").value;
+  const guests   = document.getElementById("bf-guests").value;
+  const notes    = document.getElementById("bf-notes").value.trim();
+
+  if (!name || !phone || !checkin || !checkout) {
+    addMsg("Please fill in your name, phone, check-in, and check-out dates po.", "bot");
+    return;
+  }
+
+  // Save booking request
+  const req = { name, phone, email, room, checkin, checkout, guests, notes, ts: new Date().toISOString(), status: "Pending" };
+  const reqs = JSON.parse(localStorage.getItem("bookingRequests") || "[]");
+  reqs.push(req);
+  localStorage.setItem("bookingRequests", JSON.stringify(reqs));
+
+  // Remember guest name
+  guestMemory.name = name;
+  guestMemory.room = room;
+
+  bfForm.style.display = "none";
+  addMsg(`Thank you po, ${name}! ✅ Your booking request for the ${room} (${checkin} → ${checkout}) has been received. Our team will contact you at ${phone} within 24 hours to confirm your reservation.`, "bot");
+  logConversation(`[Booking Form] ${room} ${checkin}-${checkout}`, `Booking request received for ${name}`);
+
+  // Reset form
+  ["bf-name","bf-phone","bf-email","bf-checkin","bf-checkout","bf-guests","bf-notes"].forEach(id => {
+    document.getElementById(id).value = "";
+  });
+};
+
+// ─── SEND MESSAGE ─────────────────────────────────────────
+send.onclick = sendMessage;
+input.addEventListener("keypress", e => { if (e.key === "Enter") sendMessage(); });
+
+async function sendMessage() {
+  const text = input.value.trim();
+  if (!text || isSending) return;
+
+  // Extract guest name from intro messages
+  const nameMatch = text.match(/(?:i(?:'| a)m|my name is|ako si|ito si)\s+([A-Z][a-z]+)/i);
+  if (nameMatch) guestMemory.name = nameMatch[1];
+
+  isSending = true;
+  send.disabled = true;
+  input.disabled = true;
+  // FAQ stays visible always
+
+  addMsg(text, "user");
+  input.value = "";
+
+  const typingMsg = addMsg("Typing…", "bot");
+
+  try {
+    // Inject memory context into first message if we know the guest
+    const memoryNote = guestMemory.name
+      ? `\n\n[Guest info remembered: Name = ${guestMemory.name}${guestMemory.room ? ", Interested room = " + guestMemory.room : ""}. Address them by name when appropriate.]`
+      : "";
+
+    const res = await fetch(AI_SERVER_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        message: text,
+        history: chatHistory,
+        memoryNote
+      })
+    });
+
+    if (!res.ok) throw new Error("Server error " + res.status);
+    const data = await res.json();
+    const reply = data.reply || "I apologize, I was unable to process your request. Please try again or contact us directly.";
+
+    typingMsg.remove();
+    addMsg(reply, "bot");
+    chatHistory.push([text, reply]);
+    logConversation(text, reply);
+
+  } catch (err) {
+    typingMsg.remove();
+    addMsg("⚠️ I am unable to connect at the moment. Please reach us via WhatsApp at +63 917 123 4567 or email stay@bahayniThong.com.", "bot");
+    console.error("Chat error:", err);
+  } finally {
+    isSending = false;
+    send.disabled = false;
+    input.disabled = false;
+    input.focus();
+  }
+}
+
+// ─── SHOW UNREAD BADGE after 8s if not opened ─────────────
+setTimeout(() => {
+  if (!isOpen) {
+    badge.style.display = "flex";
+  }
+}, 8000);
+// === CHATBOT END ===
+// ═══ INIT ═══
+window.addEventListener('load',()=>{
+  setTimeout(()=>{
+    document.getElementById('loader').classList.add('hidden');
+  },2200);
+  setMinDates();
+  renderCalendar();
+  setupReveal();
+  animateStats();
+});
+
+// ═══ NAVBAR SCROLL ═══
+window.addEventListener('scroll',()=>{
+  const nav=document.getElementById('mainNav');
+  if(window.scrollY>60) nav.classList.add('scrolled');
+  else nav.classList.remove('scrolled');
+  const st=document.getElementById('scrollTop');
+  if(window.scrollY>400) st.classList.add('visible');
+  else st.classList.remove('visible');
+  updateNavSpy();
+});
+
+function updateNavSpy(){
+  const sections=['about','rooms','amenities','availability','gallery','contact'];
+  const links=document.querySelectorAll('.nav-link');
+  let cur='';
+  sections.forEach(id=>{
+    const el=document.getElementById(id);
+    if(el && window.scrollY>=el.offsetTop-120) cur=id;
+  });
+  links.forEach(l=>{
+    l.classList.remove('active');
+    if(l.getAttribute('href')==='#'+cur) l.classList.add('active');
+  });
+}
+
+// ═══ MOBILE MENU ═══
+document.getElementById('hamburger').addEventListener('click',()=>{
+  document.getElementById('mobileMenu').classList.add('open');
+  document.body.style.overflow='hidden';
+});
+document.getElementById('mobileClose').addEventListener('click',closeMobile);
+function closeMobile(){
+  document.getElementById('mobileMenu').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+// ═══ DARK MODE ═══
+const darkBtn=document.getElementById('darkToggle');
+darkBtn.addEventListener('click',()=>{
+  document.body.classList.toggle('dark-mode');
+  darkBtn.textContent=document.body.classList.contains('dark-mode')?'☀️':'🌙';
+});
+
+// ═══ REVEAL ON SCROLL ═══
+function setupReveal(){
+  const els=document.querySelectorAll('.reveal');
+  const obs=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{if(e.isIntersecting) e.target.classList.add('visible')});
+  },{threshold:0.1});
+  els.forEach(el=>obs.observe(el));
+}
+
+// ═══ STATS COUNTER ═══
+function animateStats(){
+  const nums=document.querySelectorAll('.stat-num');
+  const obs=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        const target=parseInt(e.target.dataset.count);
+        let cur=0;
+        const step=target/60;
+        const timer=setInterval(()=>{
+          cur=Math.min(cur+step,target);
+          e.target.textContent=Math.floor(cur)+(e.target.dataset.count=='98'?'%':'+');
+          if(cur>=target){clearInterval(timer);e.target.textContent=target+(target==98?'%':'+')}
+        },25);
+        obs.unobserve(e.target);
+      }
+    });
+  },{threshold:0.5});
+  nums.forEach(n=>obs.observe(n));
+}
+
+// ═══ IMAGE SLIDER ═══
+const sliderState={slider1:{idx:0,total:3},slider2:{idx:0,total:3}};
+function slideRoom(id,dir){
+  const s=sliderState[id];
+  if(dir==='next') s.idx=(s.idx+1)%s.total;
+  else s.idx=(s.idx-1+s.total)%s.total;
+  document.getElementById(id).style.transform=`translateX(-${s.idx*100}%)`;
+  const dotsId=id.replace('slider','dots');
+  document.querySelectorAll(`#${dotsId} .slider-dot`).forEach((d,i)=>{
+    d.classList.toggle('active',i===s.idx);
+  });
+}
+function goToSlide(sid,did,idx){
+  sliderState[sid].idx=idx;
+  document.getElementById(sid).style.transform=`translateX(-${idx*100}%)`;
+  document.querySelectorAll(`#${did} .slider-dot`).forEach((d,i)=>d.classList.toggle('active',i===idx));
+}
+
+// ═══ TESTIMONIAL CAROUSEL ═══
+let testiPos=0;
+function scrollTesti(dir){
+  const track=document.getElementById('testiTrack');
+  const cards=track.querySelectorAll('.testi-card');
+  const cardW=cards[0].offsetWidth+24;
+  const max=cards.length-2;
+  testiPos=Math.max(0,Math.min(testiPos+dir,max));
+  track.style.transform=`translateX(-${testiPos*cardW}px)`;
+}
+
+// ═══ CALENDAR ═══
+let calYear=new Date().getFullYear();
+let calMonth=new Date().getMonth();
+const MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+// Demo booked/pending dates
+const bookedDates={
+  'all':['2026-02-15','2026-02-16','2026-02-17','2026-03-05','2026-03-06'],
+  'family':['2026-02-18','2026-02-19','2026-03-10'],
+  'master':['2026-02-22','2026-02-23','2026-03-15']
+};
+const pendingDates={
+  'all':['2026-02-25','2026-03-01'],
+  'family':['2026-02-27'],
+  'master':['2026-02-28']
+};
+
+function renderCalendar(){
+  document.getElementById('calMonthLabel').textContent=`${MONTHS[calMonth]} ${calYear}`;
+  const body=document.getElementById('calBody');
+  body.innerHTML='';
+  const filter=document.getElementById('roomFilter').value;
+  const allBooked=[...(bookedDates['all']||[]),...(bookedDates[filter]||[])];
+  const allPending=[...(pendingDates['all']||[]),...(pendingDates[filter]||[])];
+
+  const firstDay=new Date(calYear,calMonth,1).getDay();
+  const daysInMonth=new Date(calYear,calMonth+1,0).getDate();
+  const today=new Date();
+  const todayStr=`${today.getFullYear()}-${String(today.getMonth()+1).padStart(2,'0')}-${String(today.getDate()).padStart(2,'0')}`;
+
+  // Empty cells
+  for(let i=0;i<firstDay;i++){
+    const cell=document.createElement('div');
+    cell.className='cal-cell empty';
+    body.appendChild(cell);
+  }
+  // Day cells
+  for(let d=1;d<=daysInMonth;d++){
+    const dateStr=`${calYear}-${String(calMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const cell=document.createElement('div');
+    let cls='cal-cell';
+    if(dateStr===todayStr) cls+=' today';
+    else if(allBooked.includes(dateStr)) cls+=' booked';
+    else if(allPending.includes(dateStr)) cls+=' pending';
+    else cls+=' available';
+    cell.className=cls;
+
+    const dateEl=document.createElement('div');
+    dateEl.className='cal-date';
+    dateEl.textContent=d;
+    cell.appendChild(dateEl);
+
+    if(!cell.classList.contains('empty')){
+      const dot=document.createElement('div');
+      dot.className='cal-dot';
+      cell.appendChild(dot);
+      cell.title=allBooked.includes(dateStr)?'Booked':allPending.includes(dateStr)?'Pending':'Available';
+    }
+    body.appendChild(cell);
+  }
+}
+function changeMonth(dir){
+  calMonth+=dir;
+  if(calMonth>11){calMonth=0;calYear++}
+  if(calMonth<0){calMonth=11;calYear--}
+  renderCalendar();
+}
+
+// ═══ BOOKING MODAL ═══
+function openBooking(room=''){
+  document.getElementById('bookingModal').classList.add('open');
+  document.body.style.overflow='hidden';
+  if(room){
+    const sel=document.getElementById('modalRoom');
+    for(let i=0;i<sel.options.length;i++){
+      if(sel.options[i].value===room){sel.selectedIndex=i;break}
+    }
+  }
+}
+function closeBooking(){
+  document.getElementById('bookingModal').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.getElementById('bookingModal').addEventListener('click',function(e){
+  if(e.target===this) closeBooking();
+});
+
+function setMinDates(){
+  const today=new Date().toISOString().split('T')[0];
+  const ci=document.getElementById('checkIn');
+  const co=document.getElementById('checkOut');
+  if(ci) ci.min=today;
+  if(co) co.min=today;
+}
+
+function calcPrice(){
+  const room=document.getElementById('modalRoom').value;
+  const ci=document.getElementById('checkIn').value;
+  const co=document.getElementById('checkOut').value;
+  const summary=document.getElementById('priceSummary');
+  if(!ci||!co) return;
+  const nights=Math.max(0,Math.round((new Date(co)-new Date(ci))/(1000*60*60*24)));
+  if(nights<=0){summary.style.display='none';return}
+  const rate=room.includes('Master')?4500:3500;
+  const sub=rate*nights;
+  const down=sub*0.5;
+  document.getElementById('priceRate').textContent=`₱${rate.toLocaleString()}/night`;
+  document.getElementById('priceNights').textContent=nights;
+  document.getElementById('priceSub').textContent=`₱${sub.toLocaleString()}`;
+  document.getElementById('priceTotal').textContent=`₱${sub.toLocaleString()}`;
+  document.getElementById('priceDown').textContent=`₱${down.toLocaleString()}`;
+  summary.style.display='block';
+}
+document.getElementById('checkIn').addEventListener('change',function(){
+  const co=document.getElementById('checkOut');
+  if(co.value && co.value<=this.value){
+    const next=new Date(this.value);next.setDate(next.getDate()+1);
+    co.value=next.toISOString().split('T')[0];
+  }
+  calcPrice();
+});
+
+async function submitBooking(e){
+  e.preventDefault();
+  // Gather form fields (try both possible id conventions)
+  const name     = (document.getElementById('bm-firstname')?.value||'').trim() + ' ' + (document.getElementById('bm-lastname')?.value||'').trim();
+  const email    = document.getElementById('bm-email')?.value.trim()    || document.getElementById('modalEmail')?.value.trim()   || '';
+  const phone    = document.getElementById('bm-phone')?.value.trim()    || document.getElementById('modalPhone')?.value.trim()   || '';
+  const room     = document.getElementById('modalRoom')?.value          || '';
+  const checkin  = document.getElementById('checkIn')?.value            || '';
+  const checkout = document.getElementById('checkOut')?.value           || '';
+  const guests   = document.getElementById('numGuests')?.value          || '';
+  const notes    = document.getElementById('bm-notes')?.value.trim()    || document.getElementById('modalNotes')?.value.trim()   || '';
+
+  const btn = e.target.querySelector('button[type=submit]') || e.target.querySelector('button:last-of-type');
+  if(btn){ btn.disabled=true; btn.textContent='Submitting...'; }
+
+  try {
+    const res  = await fetch('http://localhost:3000/booking',{
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ name:name.trim(), email, phone, room, checkin, checkout, guests, notes, source:'modal' })
+    });
+    const data = await res.json();
+
+    if(data.ok){
+      // Update calendar immediately
+      getDatesInRange(checkin,checkout).forEach(d=>{
+        if(!bookedDates.all.includes(d)) bookedDates.all.push(d);
+      });
+      renderCalendar();
+
+      // Populate confirm screen
+      document.getElementById('confirmDetails').style.display='block';
+      document.getElementById('confirmRef').textContent      = data.bookingRef||'—';
+      document.getElementById('confirmRoom').textContent     = room;
+      document.getElementById('confirmCheckin').textContent  = checkin;
+      document.getElementById('confirmCheckout').textContent = checkout;
+      document.getElementById('confirmNights').textContent   = (data.nights||'?')+' night/s';
+      document.getElementById('confirmTotal').textContent    = '₱'+Number(data.totalPrice||0).toLocaleString();
+      document.getElementById('confirmDP').textContent       = '₱'+Number(data.downpayment||0).toLocaleString()+' (50% required)';
+      document.getElementById('confirmMsg').innerHTML        =
+        'Thank you po, <strong>'+name.trim()+'</strong>! Your booking request has been received.<br>'
+        +(email?'A confirmation email with <strong>GCash & bank payment details</strong> has been sent to <strong>'+email+'</strong>.':'Please contact us on WhatsApp to confirm payment.');
+      document.getElementById('confirmEmailNote').textContent = 'Ref: '+(data.bookingRef||'')+'  ·  Our team will call you within 24 hours.';
+    } else {
+      throw new Error(data.message||'Server error');
+    }
+  } catch(err){
+    console.warn('Booking server unavailable:',err.message);
+    document.getElementById('confirmMsg').innerHTML =
+      'Your booking has been noted.<br>Please contact us at <strong>+63 917 123 4567</strong> to confirm.';
+    document.getElementById('confirmDetails').style.display='none';
+  } finally {
+    if(btn){ btn.disabled=false; btn.textContent='✦ Confirm Reservation'; }
+    closeBooking();
+    document.getElementById('confirmScreen').classList.add('open');
+  }
+}
+
+function closeConfirm(){
+  document.getElementById('confirmScreen').classList.remove('open');
+}
+
+// ─── Date range helper ────────────────────────────────────
+function getDatesInRange(start,end){
+  const dates=[]; let cur=new Date(start); const e2=new Date(end);
+  while(cur<e2){ dates.push(cur.toISOString().split('T')[0]); cur.setDate(cur.getDate()+1); }
+  return dates;
+}
+
+// ─── Load real booked dates from server ──────────────────
+async function loadBookedDatesFromServer(){
+  try{
+    const res  = await fetch('http://localhost:3000/bookings');
+    const data = await res.json();
+    data.forEach(b=>{
+      if(!b.checkin||!b.checkout) return;
+      const dates  = getDatesInRange(b.checkin,b.checkout);
+      const status = (b.status||'').toLowerCase();
+      const room   = (b.room||'').toLowerCase().includes('master')?'master':'family';
+      dates.forEach(d=>{
+        if(status.includes('confirm')||status.includes('downpayment')){
+          if(!bookedDates.all.includes(d))    bookedDates.all.push(d);
+          if(!bookedDates[room].includes(d))  bookedDates[room].push(d);
+        } else {
+          if(!pendingDates.all.includes(d))   pendingDates.all.push(d);
+          if(!pendingDates[room].includes(d)) pendingDates[room].push(d);
+        }
+      });
+    });
+    renderCalendar();
+  } catch(e){ /* server offline — use static dates */ }
+}
+loadBookedDatesFromServer();
+
+// ═══ GALLERY LIGHTBOX ═══
+const galleryImgs=[
+  'https://images.unsplash.com/photo-1510798831971-661eb04b3739?w=1200&q=90',
+  'https://images.unsplash.com/photo-1560448204-603b3fc33ddc?w=1200&q=90',
+  'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=1200&q=90',
+  'https://images.unsplash.com/photo-1556020685-ae41abfc9365?w=1200&q=90',
+  'https://images.unsplash.com/photo-1588854337236-6889d631faa8?w=1200&q=90',
+  'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=90'
+];
+let lbIdx=0;
+function openLightbox(idx){
+  lbIdx=idx;
+  document.getElementById('lbImg').src=galleryImgs[lbIdx];
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeLightbox(){
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow='';
+}
+function lbNav(dir){
+  lbIdx=(lbIdx+dir+galleryImgs.length)%galleryImgs.length;
+  document.getElementById('lbImg').src=galleryImgs[lbIdx];
+}
+document.getElementById('lightbox').addEventListener('click',function(e){
+  if(e.target===this) closeLightbox();
+});
+
+// ═══ CONTACT ═══
+function copyEmail(){
+  navigator.clipboard.writeText('stay@bahayniThong.com').then(()=>{
+    const btn=event.target;
+    btn.textContent='✓ Copied!';
+    setTimeout(()=>btn.textContent='📋 Copy Email',2000);
+  });
+}
+function sendContactForm(e){
+  e.preventDefault();
+  e.target.reset();
+  alert('✅ Message sent! We\'ll get back to you within 24 hours.');
+}
+
+ is now ${el.checked?'available':'unavailable'}`);
+}
+
+// ═══ KEYBOARD ESCAPE ═══
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){
+    closeBooking();
+    closeLightbox();
+    closeConfirm();
+    closeMobile();
+  }
+});
+</script>
+</body>
+</html>

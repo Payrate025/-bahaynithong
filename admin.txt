@@ -1,0 +1,142 @@
+<section id="admin">
+  <div style="text-align:center;margin-bottom:2rem">
+    <div class="section-eyebrow" style="color:#C6A75E">Restricted Access</div>
+    <h2 class="section-title" style="color:#F5F1E8;max-width:none">Admin Panel</h2>
+    <div class="section-line" style="margin:0 auto"></div>
+  </div>
+  <div class="admin-panel">
+    <div class="admin-login" id="adminLogin">
+      <div class="admin-title">Owner Access</div>
+      <div class="admin-sub">Secure Login Required</div>
+      <div class="admin-form">
+        <div class="form-group">
+          <label style="color:rgba(245,241,232,0.5)">Username</label>
+          <input type="text" id="adminUser" placeholder="admin" value="admin">
+        </div>
+        <div class="form-group">
+          <label style="color:rgba(245,241,232,0.5)">Password</label>
+          <input type="password" id="adminPass" placeholder="••••••••" value="admin123">
+        </div>
+        <p style="font-size:0.7rem;color:rgba(245,241,232,0.3);margin-bottom:1rem;letter-spacing:0.1em">Demo: admin / admin123</p>
+        <button class="btn-admin-login" onclick="adminLogin()">🔐 Login to Panel</button>
+      </div>
+    </div>
+    <div class="admin-dashboard" id="adminDash">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;flex-wrap:wrap;gap:1rem">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:#C6A75E">Dashboard</div>
+        <button class="btn-admin-action" onclick="adminLogout()">Log Out</button>
+      </div>
+      <div class="admin-tabs">
+        <button class="admin-tab active" onclick="showAdminTab('reservations',this)">Reservations</button>
+        <button class="admin-tab" onclick="showAdminTab('rooms',this)">Room Settings</button>
+        <button class="admin-tab" onclick="showAdminTab('rates',this)">Update Rates</button>
+        <button class="admin-tab" onclick="showAdminTab('dates',this)">Block Dates</button>
+      </div>
+      <div class="admin-content">
+        <!-- Reservations Tab -->
+        <div id="tab-reservations">
+          <div class="admin-actions">
+            <button class="btn-admin-action" onclick="downloadCSV()">⬇ Download CSV</button>
+            <button class="btn-admin-action btn-admin-danger" onclick="clearAll()">🗑 Clear All</button>
+          </div>
+          <div style="overflow-x:auto;margin-top:1rem">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Booking ID</th>
+                  <th>Guest</th>
+                  <th>Room</th>
+                  <th>Check-In</th>
+                  <th>Check-Out</th>
+                  <th>Guests</th>
+                  <th>Total</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="adminTableBody">
+                <tr><td>BNT-001</td><td>Lebron James</td><td>Family Room</td><td>2025-02-20</td><td>2025-02-22</td><td>6</td><td>₱7,000</td><td><span class="status-badge badge-confirmed">Confirmed</span></td></tr>
+                <tr><td>BNT-002</td><td>Kobe Bryant</td><td>Master Room</td><td>2025-02-25</td><td>2025-02-27</td><td>2</td><td>₱9,000</td><td><span class="status-badge badge-pending">Pending</span></td></tr>
+                <tr><td>BNT-003</td><td>Michael Jordan</td><td>Family Room</td><td>2025-03-01</td><td>2025-03-03</td><td>4</td><td>₱7,000</td><td><span class="status-badge badge-confirmed">Confirmed</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!-- Rooms Tab -->
+        <div id="tab-rooms" style="display:none">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:0.5rem">
+            <div style="background:rgba(245,241,232,0.04);border:1px solid rgba(198,167,94,0.15);border-radius:2px;padding:1.25rem">
+              <div style="color:#C6A75E;font-size:0.8rem;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.75rem">Family Room</div>
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem">
+                <span style="color:rgba(245,241,232,0.7);font-size:0.85rem">Availability</span>
+                <label class="toggle-switch">
+                  <input type="checkbox" checked onchange="toggleRoom('family',this)">
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+              <button class="btn-admin-action" style="width:100%;margin-top:0.5rem">Edit Details</button>
+            </div>
+            <div style="background:rgba(245,241,232,0.04);border:1px solid rgba(198,167,94,0.15);border-radius:2px;padding:1.25rem">
+              <div style="color:#C6A75E;font-size:0.8rem;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.75rem">Smart Lock Master Room</div>
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem">
+                <span style="color:rgba(245,241,232,0.7);font-size:0.85rem">Availability</span>
+                <label class="toggle-switch">
+                  <input type="checkbox" checked onchange="toggleRoom('master',this)">
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+              <button class="btn-admin-action" style="width:100%;margin-top:0.5rem">Edit Details</button>
+            </div>
+          </div>
+        </div>
+        <!-- Rates Tab -->
+        <div id="tab-rates" style="display:none;margin-top:0.5rem">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+            <div class="form-group">
+              <label style="color:rgba(245,241,232,0.6)">Family Room Rate (₱/night)</label>
+              <input type="number" value="3500">
+            </div>
+            <div class="form-group">
+              <label style="color:rgba(245,241,232,0.6)">Smart Lock Master Room Rate (₱/night)</label>
+              <input type="number" value="4500">
+            </div>
+            <div class="form-group">
+              <label style="color:rgba(245,241,232,0.6)">Weekend Surcharge (%)</label>
+              <input type="number" value="20">
+            </div>
+            <div class="form-group">
+              <label style="color:rgba(245,241,232,0.6)">Downpayment Required (%)</label>
+              <input type="number" value="50">
+            </div>
+          </div>
+          <button class="btn-admin-action" style="margin-top:1.25rem">💾 Save Rates</button>
+        </div>
+        <!-- Block Dates Tab -->
+        <div id="tab-dates" style="display:none;margin-top:0.5rem">
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem">
+            <div class="form-group">
+              <label style="color:rgba(245,241,232,0.6)">Room</label>
+              <select>
+                <option>All Rooms</option>
+                <option>Family Room</option>
+                <option>Smart Lock Master Room</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label style="color:rgba(245,241,232,0.6)">Block From</label>
+              <input type="date">
+            </div>
+            <div class="form-group">
+              <label style="color:rgba(245,241,232,0.6)">Block Until</label>
+              <input type="date">
+            </div>
+          </div>
+          <div class="form-group" style="margin-top:0.75rem">
+            <label style="color:rgba(245,241,232,0.6)">Reason (optional)</label>
+            <input type="text" placeholder="Maintenance, personal use, etc.">
+          </div>
+          <button class="btn-admin-action btn-admin-danger" style="margin-top:1.25rem">🚫 Block These Dates</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> 
