@@ -1,4 +1,4 @@
-# 1. never deploy in GitHub
-echo ".env" > .gitignore
-echo "bookings_db.json" >> .gitignore
-echo "payments_db.json" >> .gitignore
+.env
+node_modules/
+bookings_db.json
+payments_db.json
