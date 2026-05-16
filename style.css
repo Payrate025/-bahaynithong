@@ -408,7 +408,7 @@ nav.scrolled{
   position:absolute;inset:0;
   background:
     linear-gradient(165deg,rgba(10,20,12,0.65) 0%,rgba(31,61,43,0.4) 50%,rgba(107,79,58,0.35) 100%),
-    url('Thong/IMG_20260507_174504.jpg') center/cover no-repeat;
+    url('baguio.jpg') center/cover no-repeat;
   transform:scale(1.05);
   animation:heroZoom 20s ease-in-out infinite alternate;
 }
@@ -914,9 +914,7 @@ body.dark-mode .testi-author{color:#a8d4b5}
   display:flex;align-items:center;justify-content:center;transition:all 0.3s;
 }
 .testi-btn:hover{background:#C6A75E;color:#0E1F15}
-.white-text{
-  color: white;
-}
+
 /* ─── CONTACT ─── */
 #contact{background:linear-gradient(135deg,#1F3D2B,#2d5a3f)}
 body.dark-mode #contact{background:linear-gradient(135deg,#0a1a10,#0d2014)}
@@ -1294,9 +1292,7 @@ footer{
   display: flex; align-items: center; justify-content: center;
 }
 .cal-nav-btn:hover { background: var(--gold); color: var(--dark-bg); }
-.cal-month{
-  color: var(--gold);
-}
+
 /* Calendar */
 .calendar {
   max-width: 800px;

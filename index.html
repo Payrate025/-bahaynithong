@@ -238,20 +238,34 @@
   <div class="avail-container">
     <div class="section-eyebrow reveal">Live Booking Schedule</div>
     <h2 class="section-title reveal">Availability Calendar</h2>
-    <div class="section-line reveal"></div>
-    <p class="section-desc reveal" style="margin-bottom:2.5rem">Check real-time availability before making your reservation</p>
-    <div class="avail-controls reveal">
-      <select class="avail-select" id="roomFilter" onchange="renderCalendar()">
-        <option value="all">All Rooms</option>
-        <option value="family">Family Room</option>
-        <option value="master">Smart Lock Master Room</option>
-      </select>
-      <div class="cal-nav">
-        <button class="cal-nav-btn" onclick="changeMonth(-1)">‹</button>
-        <div class="cal-month" id="calMonthLabel"></div>
-        <button class="cal-nav-btn" onclick="changeMonth(1)">›</button>
+    <div class="section-line reveal" style="margin:0 auto"></div>
+    <p class="section-desc reveal" style="text-align:center;margin:0 auto 2.5rem">Check real-time room availability before making your reservation</p>
+
+    <!-- Room Filter Tabs -->
+    <div class="room-filter-tabs reveal">
+      <button class="room-tab active" data-room="all" onclick="setRoomFilter('all',this)">🏠 All Rooms</button>
+      <button class="room-tab talisay" data-room="talisay" onclick="setRoomFilter('talisay',this)">🌳 Talisay</button>
+      <button class="room-tab hauili" data-room="hauili" onclick="setRoomFilter('hauili',this)">🌿 Hauili</button>
+      <button class="room-tab salong" data-room="salong" onclick="setRoomFilter('salong',this)">🪵 Salong</button>
+      <button class="room-tab odorata" data-room="odorata" onclick="setRoomFilter('odorata',this)">🌺 Odorata</button>
+    </div>
+
+    <!-- Room Info Bar -->
+    <div class="room-info-bar reveal" id="roomInfoBar">
+      <div class="room-info-item" id="roomInfoContent">
+        <span class="room-info-name">All Rooms</span>
+        <span class="room-info-detail">Select a room to see details</span>
       </div>
     </div>
+
+    <!-- Calendar Nav -->
+    <div class="cal-nav-bar reveal">
+      <button class="cal-nav-btn" onclick="changeMonth(-1)">‹</button>
+      <div class="cal-month" id="calMonthLabel"></div>
+      <button class="cal-nav-btn" onclick="changeMonth(1)">›</button>
+    </div>
+
+    <!-- Calendar -->
     <div class="calendar reveal">
       <div class="cal-header">
         <div class="cal-day-name">Sun</div>
@@ -264,11 +278,27 @@
       </div>
       <div class="cal-body" id="calBody"></div>
     </div>
-    <div class="cal-legend reveal">
-      <div class="legend-item"><div class="legend-dot" style="background:#4CAF50"></div>Available</div>
-      <div class="legend-item"><div class="legend-dot" style="background:#B04A4A"></div>Booked</div>
-      <div class="legend-item"><div class="legend-dot" style="background:#E0A106"></div>Pending</div>
-      <div class="legend-item"><div class="legend-dot" style="background:#C6A75E"></div>Today</div>
+
+    <!-- Date Tooltip -->
+    <div class="cal-tooltip" id="calTooltip" style="display:none"></div>
+
+    <!-- Status Legend -->
+    <div class="cal-legend-wrap reveal">
+      <div class="cal-legend-title">Status</div>
+      <div class="cal-legend">
+        <div class="legend-item"><div class="legend-dot avail-dot"></div>Available</div>
+        <div class="legend-item"><div class="legend-dot booked-dot"></div>Fully Booked</div>
+        <div class="legend-item"><div class="legend-dot pending-dot"></div>Pending</div>
+        <div class="legend-item"><div class="legend-dot today-dot"></div>Today</div>
+        <div class="legend-item"><div class="legend-dot maint-dot"></div>Maintenance</div>
+      </div>
+      <div class="cal-legend-title" style="margin-top:1rem">Rooms</div>
+      <div class="cal-legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#5C8A5C"></div>Talisay (2F Family)</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#4A7A8A"></div>Hauili (1F Family)</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#8A6A3A"></div>Salong (2F Master)</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#8A4A6A"></div>Odorata (1F Master)</div>
+      </div>
     </div>
   </div>
 </section>
@@ -304,41 +334,128 @@
 
 <!-- ▒▒▒ TESTIMONIALS ▒▒▒ -->
 <section id="testimonials">
-  <div style="max-width:1200px;margin:0 auto">
-    <div class="section-eyebrow reveal">Guest Reviews</div>
-    <h2 class="section-title reveal">What Our Guests Say</h2>
-    <div class="section-line reveal"></div>
-    <div style="overflow:hidden;margin-top:2rem">
-      <div class="testi-track" id="testiTrack">
-        <div class="testi-card">
-          <div class="testi-stars">★★★★★</div>
-          <div class="testi-text">"Absolutely enchanting stay. The pine-scented air, the warm wooden interiors — we felt like we were in a fairytale cabin. Will definitely come back!"</div>
-          <div class="testi-author">Lebron James</div>
-          <div class="testi-loc">Manila, Philippines</div>
-        </div>
-        <div class="testi-card">
-          <div class="testi-stars">★★★★★</div>
-          <div class="testi-text">"Perfect for our family reunion. The Family Room fit all 8 of us comfortably. The hosts were incredibly responsive and the location is ideal."</div>
-          <div class="testi-author">Kobe Bryant</div>
-          <div class="testi-loc">Quezon City, Philippines</div>
-        </div>
-        <div class="testi-card">
-          <div class="testi-stars">★★★★★</div>
-          <div class="testi-text">"The Smart Lock Master Room exceeded all expectations. Modern, clean, and the mountain breeze is unbeatable. Highly recommended for couples!"</div>
-          <div class="testi-author">Michael Jordan</div>
-          <div class="testi-loc">Chicago, USA</div>
-        </div>
-        <div class="testi-card">
-          <div class="testi-stars">★★★★★</div>
-          <div class="testi-text">"We celebrated our anniversary here and it was magical. The heritage aesthetic with modern comforts is a perfect balance. Bahay ni Thong is a gem!"</div>
-          <div class="testi-author">Adolfo & Cerezo</div>
-          <div class="testi-loc">Cebu, Philippines</div>
+  <div class="testi-container">
+    <!-- LEFT: Testimonial Display -->
+    <div class="testi-left">
+      <div class="section-eyebrow reveal">Guest Reviews</div>
+      <h2 class="section-title reveal" style="font-size:clamp(1.8rem,3vw,2.8rem)">What Our<br><em>Guests Say</em></h2>
+      <div class="section-line reveal"></div>
+
+      <!-- Featured Card -->
+      <div class="testi-featured reveal" id="testiFeatured">
+        <div class="testi-quote-mark">"</div>
+        <div class="testi-featured-stars" id="testiStars">★★★★★</div>
+        <div class="testi-featured-text" id="testiText">Absolutely enchanting stay. The pine-scented air, the warm wooden interiors — we felt like we were in a fairytale cabin. Will definitely come back!</div>
+        <div class="testi-featured-footer">
+          <div class="testi-avatar" id="testiAvatar">LJ</div>
+          <div class="testi-meta">
+            <div class="testi-featured-author" id="testiAuthor">Lebron James</div>
+            <div class="testi-featured-loc" id="testiLoc">📍 Manila, Philippines</div>
+            <div class="testi-featured-room" id="testiRoom">🛏️ Family Room · 3 nights</div>
+          </div>
+          <div class="testi-verified">✓ Verified Guest</div>
         </div>
       </div>
+
+      <!-- Thumbnail Nav -->
+      <div class="testi-thumbs" id="testiThumbs"></div>
+
+      <!-- Prev/Next -->
+      <div class="testi-nav">
+        <button class="testi-nav-btn" onclick="moveTesti(-1)">‹</button>
+        <div class="testi-dots" id="testiDots"></div>
+        <button class="testi-nav-btn" onclick="moveTesti(1)">›</button>
+      </div>
     </div>
-    <div class="testi-controls">
-      <button class="testi-btn" onclick="scrollTesti(-1)">‹</button>
-      <button class="testi-btn" onclick="scrollTesti(1)">›</button>
+
+    <!-- RIGHT: Leave a Review Form -->
+    <div class="testi-right reveal">
+      <div class="review-form-header">
+        <div class="section-eyebrow" style="text-align:left">Share Your Experience</div>
+        <h3 class="review-form-title">Leave a Review</h3>
+        <p class="review-form-sub">Tell future guests about your stay with us.</p>
+      </div>
+
+      <!-- Live Preview -->
+      <div class="review-preview" id="reviewPreview" style="display:none">
+        <div class="preview-label">✦ Live Preview</div>
+        <div class="preview-stars" id="previewStars"></div>
+        <div class="preview-text" id="previewText">Your review will appear here...</div>
+        <div class="preview-author" id="previewAuthor">— Your Name</div>
+      </div>
+
+      <form class="review-form" onsubmit="submitReview(event)" id="reviewForm">
+        <div class="rf-grid">
+          <div class="rf-group">
+            <label>Full Name *</label>
+            <input type="text" id="rv-name" placeholder="Juan Dela Cruz" required oninput="updatePreview()"/>
+          </div>
+          <div class="rf-group">
+            <label>Email Address *</label>
+            <input type="email" id="rv-email" placeholder="your@email.com" required/>
+          </div>
+          <div class="rf-group">
+            <label>Room Stayed In *</label>
+            <select id="rv-room" required>
+              <option value="">Select room...</option>
+              <option value="Talisay — 2nd Floor Family Room">🌳 Talisay — 2nd Floor Family Room</option>
+              <option value="Hauili — 1st Floor Family Room">🌿 Hauili — 1st Floor Family Room</option>
+              <option value="Salong — 2nd Floor Master Bedroom">🪵 Salong — 2nd Floor Master Bedroom</option>
+              <option value="Odorata — 1st Floor Master Bedroom">🌺 Odorata — 1st Floor Master Bedroom</option>
+            </select>
+          </div>
+          <div class="rf-group">
+            <label>Location / City</label>
+            <input type="text" id="rv-loc" placeholder="Manila, Philippines"/>
+          </div>
+          <div class="rf-group">
+            <label>Check-in Date</label>
+            <input type="date" id="rv-checkin"/>
+          </div>
+          <div class="rf-group">
+            <label>Check-out Date</label>
+            <input type="date" id="rv-checkout"/>
+          </div>
+        </div>
+
+        <!-- Star Rating -->
+        <div class="rf-group" style="margin-bottom:1rem">
+          <label>Your Rating *</label>
+          <div class="star-selector" id="starSelector">
+            <span class="star-pick" data-val="1">★</span>
+            <span class="star-pick" data-val="2">★</span>
+            <span class="star-pick" data-val="3">★</span>
+            <span class="star-pick" data-val="4">★</span>
+            <span class="star-pick" data-val="5">★</span>
+          </div>
+          <input type="hidden" id="rv-rating" value="0"/>
+        </div>
+
+        <!-- Review Text -->
+        <div class="rf-group" style="margin-bottom:1rem">
+          <label>Your Review *</label>
+          <textarea id="rv-review" rows="4" placeholder="Share your experience — what did you love most about your stay?" required oninput="updatePreview()"></textarea>
+        </div>
+
+        <!-- Image Upload -->
+        <div class="rf-group" style="margin-bottom:1.5rem">
+          <label>Upload Photo <span style="opacity:.5;font-size:11px">(optional)</span></label>
+          <div class="file-upload-area" onclick="document.getElementById('rv-photo').click()">
+            <span id="fileLabel">📷 Click to upload a photo of your stay</span>
+            <input type="file" id="rv-photo" accept="image/*" style="display:none" onchange="handleFileUpload(this)"/>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-review-submit">✦ Submit Review</button>
+      </form>
+
+      <!-- Success Message -->
+      <div class="review-success" id="reviewSuccess" style="display:none">
+        <div class="success-icon">✓</div>
+        <div class="success-title">Thank You!</div>
+        <div class="success-sub">Your review has been submitted and will appear after moderation.</div>
+        <button onclick="resetReviewForm()" class="btn-review-submit" style="margin-top:1rem">Write Another Review</button>
+      </div>
     </div>
   </div>
 </section>
