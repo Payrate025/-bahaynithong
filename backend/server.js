@@ -9,13 +9,9 @@ const fetch      = (...args) => import("node-fetch").then(({ default: f }) => f(
 
 const app = express();
 app.use(cors({
-  origin: [
-    "https://bahaynithong.netlify.app",
-    "https://bahaynithong.onrender.com",
-    "http://localhost:3000",
-    "http://localhost:5500",
-    "http://127.0.0.1:5500"
-  ]
+  origin: "*",
+  methods: ["GET", "POST", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"]
 }));
 app.use(express.json());
 
