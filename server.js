@@ -8,7 +8,7 @@ const app = express();
 app.use(cors({
   origin: [
     "https://bahaynithong.netlify.app",
-    "http://localhost:3000",
+    "https://bahaynithong-production.up.railway.app",
     "http://localhost:5500",
     "http://127.0.0.1:5500"
   ]
