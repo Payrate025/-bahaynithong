@@ -1,6 +1,6 @@
 
 // ─── CONFIG ───────────────────────────────────────────────
-const AI_SERVER_URL = "https://bahaynithong-production.up.railway.app/chat";
+const AI_SERVER_URL = "https://bahaynithong.onrender.com/chat";
 
 // ─── ELEMENTS ─────────────────────────────────────────────
 const toggle   = document.getElementById("aiToggle");
@@ -673,7 +673,7 @@ function getDatesInRange(start,end){
 
 async function loadBookedDatesFromServer(){
   try{
-    const res  = await fetch('https://bahaynithong-production.up.railway.app/bookings');
+    const res  = await fetch('https://bahaynithong.onrender.com/bookings');
     const data = await res.json();
     data.forEach(b=>{
       if(!b.checkin||!b.checkout) return;
