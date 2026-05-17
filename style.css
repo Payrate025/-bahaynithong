@@ -269,6 +269,9 @@ body:not(.dark-mode) .faq-chip { background: rgba(0,0,0,0.05); border-color: rgb
   padding: 12px;
   border-top: 1px solid rgba(255,255,255,0.08);
   background: rgba(0,0,0,0.15);
+  overflow-y: auto;
+  max-height: 360px;
+  flex-shrink: 0;
 }
 body:not(.dark-mode) #aiBookingForm { background: rgba(0,0,0,0.03); border-top: 1px solid rgba(0,0,0,0.08); }
 .ai-form-title { font-weight: 700; font-size: 13px; margin-bottom: 10px; color: var(--gold); }
