@@ -39,7 +39,6 @@ body.dark-mode{background:#0E1F15;color:#e8e0d4}
 
 /* Button */
 #aiToggle{
-  display:flex;
   width:60px;
   height:60px;
   border-radius:50%;
@@ -50,6 +49,11 @@ body.dark-mode{background:#0E1F15;color:#e8e0d4}
   cursor:pointer;
   box-shadow:var(--shadow);
   transition:all 0.3s;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  line-height:1;
+  padding:0;
 }
 #aiToggle:hover{
   transform:translateY(-3px);
@@ -62,14 +66,12 @@ body.dark-mode{background:#0E1F15;color:#e8e0d4}
 /* Chat box */
 #aiBox{
   width:340px;
-  height:460px;
+  height:520px;
+  max-height:80vh;
   margin-top:10px;
   display:none;
   flex-direction:column;
-
-  /* 🔥 FIX: stronger background */
   background: rgba(20, 35, 25, 0.95);
-
   backdrop-filter: blur(14px);
   border:1px solid rgba(198,167,94,0.3);
   border-radius:12px;
@@ -99,9 +101,12 @@ body:not(.dark-mode) #aiBox{
   flex:1;
   padding:12px;
   overflow-y:auto;
+  overflow-x:hidden;
   display:flex;
   flex-direction:column;
   gap:8px;
+  min-height:0;
+  scroll-behavior:smooth;
 }
 
 /* Bubbles */
@@ -187,7 +192,7 @@ body:not(.dark-mode) #aiInput{
   display: flex; align-items: center; justify-content: center;
   font-weight: 700;
 }
-#aiToggle { position: relative; }
+#aiToggle { position: fixed; bottom:24px; left:24px; z-index:1000; }
 
 /* Header upgrade */
 .ai-header { justify-content: space-between; align-items: center; }
