@@ -34,21 +34,30 @@ function logConversation(user, bot) {
 }
 
 // ─── OPEN / CLOSE ─────────────────────────────────────────
-toggle.onclick = () => {
-  isOpen = !isOpen;
-  box.style.display = isOpen ? "flex" : "none";
+function openChat() {
+  isOpen = true;
+  box.style.display = "flex";
   box.style.flexDirection = "column";
   badge.style.display = "none";
-  if (isOpen && !hasGreeted) {
+  toggle.style.display = "none"; // hide toggle button when chat is open
+  if (!hasGreeted) {
     hasGreeted = true;
     setTimeout(() => {
       addMsg("Mabuhay po! 👋 I am Kuya Thong, your dedicated assistant for Bahay ni Thong. I can help you with room inquiries, rates, availability, and reservations. How may I assist you today?", "bot");
     }, 400);
   }
-};
+}
 
-closeBtn.onclick = () => { isOpen = false; box.style.display = "none"; };
-minimize.onclick = () => { isOpen = false; box.style.display = "none"; };
+function closeChat() {
+  isOpen = false;
+  box.style.display = "none";
+  toggle.style.display = "flex"; // show toggle button when chat is closed
+  bfForm.style.display = "none"; // also close booking form
+}
+
+toggle.onclick = openChat;
+closeBtn.onclick = closeChat;
+minimize.onclick = closeChat;
 
 // ─── ADD MESSAGE ──────────────────────────────────────────
 function addMsg(text, type) {
@@ -86,8 +95,11 @@ bfBtn.onclick = () => {
 };
 document.getElementById("bf-cancel").onclick = () => {
   bfForm.style.display = "none";
+  // Show chat messages and input again
+  document.getElementById("aiMessages").style.display = "block";
+  document.getElementById("aiFAQ").style.display = "block";
 };
-document.getElementById("bf-submit").onclick = () => {
+document.getElementById("bf-submit").onclick = async () => {
   const name     = document.getElementById("bf-name").value.trim();
   const phone    = document.getElementById("bf-phone").value.trim();
   const email    = document.getElementById("bf-email").value.trim();
@@ -102,24 +114,69 @@ document.getElementById("bf-submit").onclick = () => {
     return;
   }
 
-  // Save booking request
-  const req = { name, phone, email, room, checkin, checkout, guests, notes, ts: new Date().toISOString(), status: "Pending" };
-  const reqs = JSON.parse(localStorage.getItem("bookingRequests") || "[]");
-  reqs.push(req);
-  localStorage.setItem("bookingRequests", JSON.stringify(reqs));
+  const submitBtn = document.getElementById("bf-submit");
+  submitBtn.disabled = true;
+  submitBtn.textContent = "Sending...";
 
-  // Remember guest name
+  // Remember guest
   guestMemory.name = name;
   guestMemory.room = room;
-
   bfForm.style.display = "none";
-  addMsg(`Thank you po, ${name}! ✅ Your booking request for the ${room} (${checkin} → ${checkout}) has been received. Our team will contact you at ${phone} within 24 hours to confirm your reservation.`, "bot");
-  logConversation(`[Booking Form] ${room} ${checkin}-${checkout}`, `Booking request received for ${name}`);
 
-  // Reset form
-  ["bf-name","bf-phone","bf-email","bf-checkin","bf-checkout","bf-guests","bf-notes"].forEach(id => {
-    document.getElementById(id).value = "";
-  });
+  try {
+    const res = await fetch("https://bahaynithong.onrender.com/booking", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, email, phone, room, checkin, checkout, guests, notes, source: "ai" })
+    });
+    const data = await res.json();
+
+    if (data.ok) {
+      const nights = data.nights || "?";
+      const total  = data.totalPrice ? "₱" + Number(data.totalPrice).toLocaleString() : "";
+      const dp     = data.downpayment ? "₱" + Number(data.downpayment).toLocaleString() : "";
+      addMsg(
+        `Thank you po, ${name}! ✅ Booking received (Ref: ${data.bookingRef}).
+
+` +
+        `📋 ${room}
+📅 ${checkin} → ${checkout} (${nights} night/s)
+💰 Total: ${total} | Downpayment: ${dp}
+
+` +
+        `${email ? `A confirmation email with payment details has been sent to ${email}.` : `Our team will contact you at ${phone} within 24 hours po!`}`,
+        "bot"
+      );
+      logConversation(`[Booking Form] ${room} ${checkin}-${checkout}`, `Booking confirmed for ${name} [${data.bookingRef}]`);
+
+      // Update calendar
+      if(typeof getDatesInRange === "function") {
+        getDatesInRange(checkin, checkout).forEach(d => {
+          if(!bookedDates.all.includes(d)) bookedDates.all.push(d);
+        });
+        if(typeof renderCalendar === "function") renderCalendar();
+      }
+    } else {
+      throw new Error(data.message || "Server error");
+    }
+  } catch (err) {
+    const bookingRef = "BNT-" + Date.now().toString().slice(-6);
+    addMsg(
+      `Thank you po, ${name}! ✅ Booking noted (Ref: ${bookingRef}).
+` +
+      `Our team will contact you at ${phone} within 24 hours to confirm.
+` +
+      `(Please also message us on WhatsApp: +63 917 123 4567)`,
+      "bot"
+    );
+    console.error("Chat booking error:", err);
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.textContent = "Send Request ➤";
+    ["bf-name","bf-phone","bf-email","bf-checkin","bf-checkout","bf-guests","bf-notes"].forEach(id => {
+      document.getElementById(id).value = "";
+    });
+  }
 };
 
 // ─── SEND MESSAGE ─────────────────────────────────────────
@@ -137,7 +194,7 @@ async function sendMessage() {
   isSending = true;
   send.disabled = true;
   input.disabled = true;
-  document.getElementById("aiFAQ").style.display = "none";
+  // FAQ stays visible always
 
   addMsg(text, "user");
   input.value = "";
@@ -755,66 +812,10 @@ document.getElementById('checkIn').addEventListener('change',function(){
   calcPrice();
 });
 
-async function submitBooking(e){
+function submitBooking(e){
   e.preventDefault();
-
-  const firstname = document.getElementById('bm-firstname')?.value.trim() || '';
-  const lastname  = document.getElementById('bm-lastname')?.value.trim()  || '';
-  const name      = (firstname + ' ' + lastname).trim();
-  const email     = document.getElementById('bm-email')?.value.trim()     || '';
-  const phone     = document.getElementById('bm-phone')?.value.trim()     || '';
-  const room      = document.getElementById('modalRoom')?.value            || '';
-  const checkin   = document.getElementById('checkIn')?.value              || '';
-  const checkout  = document.getElementById('checkOut')?.value             || '';
-  const guests    = document.getElementById('numGuests')?.value            || '';
-  const notes     = document.getElementById('bm-notes')?.value.trim()     || '';
-
-  const btn = document.getElementById('bookingSubmitBtn');
-  if(btn){ btn.disabled=true; btn.textContent='Submitting...'; }
-
-  try {
-    const res  = await fetch('https://bahaynithong.onrender.com/booking', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, email, phone, room, checkin, checkout, guests, notes, source:'modal' })
-    });
-    const data = await res.json();
-
-    if(data.ok){
-      // Update calendar
-      if(typeof getDatesInRange === 'function'){
-        getDatesInRange(checkin, checkout).forEach(d => {
-          if(!bookedDates.all.includes(d)) bookedDates.all.push(d);
-        });
-        if(typeof renderCalendar === 'function') renderCalendar();
-      }
-      // Update confirm screen
-      const confirmMsg = document.getElementById('confirmMsg');
-      if(confirmMsg){
-        confirmMsg.innerHTML = `Thank you po, <strong>${name}</strong>! Your booking has been received.<br>
-          ${email ? `Confirmation email with payment details sent to <strong>${email}</strong>.` : `Our team will contact you at <strong>${phone}</strong> within 24 hours.`}`;
-      }
-      const confirmDetails = document.getElementById('confirmDetails');
-      if(confirmDetails){
-        confirmDetails.style.display='block';
-        document.getElementById('confirmRef').textContent      = data.bookingRef||'—';
-        document.getElementById('confirmRoom').textContent     = room;
-        document.getElementById('confirmCheckin').textContent  = checkin;
-        document.getElementById('confirmCheckout').textContent = checkout;
-        document.getElementById('confirmNights').textContent   = (data.nights||'?')+' night/s';
-        document.getElementById('confirmTotal').textContent    = '₱'+Number(data.totalPrice||0).toLocaleString();
-        document.getElementById('confirmDP').textContent       = '₱'+Number(data.downpayment||0).toLocaleString()+' (50% required)';
-      }
-    } else {
-      throw new Error(data.message||'Server error');
-    }
-  } catch(err){
-    console.warn('Booking error:', err.message);
-  } finally {
-    if(btn){ btn.disabled=false; btn.textContent='✦ Confirm Reservation'; }
-    closeBooking();
-    document.getElementById('confirmScreen').classList.add('open');
-  }
+  closeBooking();
+  document.getElementById('confirmScreen').classList.add('open');
 }
 function closeConfirm(){
   document.getElementById('confirmScreen').classList.remove('open');

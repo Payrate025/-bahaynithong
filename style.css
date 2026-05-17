@@ -39,6 +39,7 @@ body.dark-mode{background:#0E1F15;color:#e8e0d4}
 
 /* Button */
 #aiToggle{
+  display:flex;
   width:60px;
   height:60px;
   border-radius:50%;
