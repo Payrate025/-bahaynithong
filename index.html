@@ -670,25 +670,27 @@
         <div class="form-grid">
           <div class="form-group">
             <label>First Name</label>
-            <input type="text" placeholder="Juan" required>
+            <input type="text" id="bm-firstname" placeholder="Juan" required>
           </div>
           <div class="form-group">
             <label>Last Name</label>
-            <input type="text" placeholder="Dela Cruz" required>
+            <input type="text" id="bm-lastname" placeholder="Dela Cruz" required>
           </div>
           <div class="form-group">
             <label>Email Address</label>
-            <input type="email" placeholder="juan@email.com" required>
+            <input type="email" id="bm-email" placeholder="juan@email.com" required>
           </div>
           <div class="form-group">
             <label>Phone Number</label>
-            <input type="tel" placeholder="+63 9XX XXX XXXX" required>
+            <input type="tel" id="bm-phone" placeholder="+63 9XX XXX XXXX" required>
           </div>
           <div class="form-group">
             <label>Room Type</label>
             <select id="modalRoom" onchange="calcPrice()">
-              <option value="Family Room">Family Room — ₱3,500/night</option>
-              <option value="Smart Lock Master Room">Smart Lock Master Room — ₱4,500/night</option>
+              <option value="Talisay — 2nd Floor Family Room">🌳 Talisay — 2nd Floor Family Room ₱4,500/night</option>
+              <option value="Hauili — 1st Floor Family Room">🌿 Hauili — 1st Floor Family Room ₱4,500/night</option>
+              <option value="Salong — 2nd Floor Master Bedroom">🪵 Salong — 2nd Floor Master Bedroom ₱6,000/night</option>
+              <option value="Odorata — 1st Floor Master Bedroom">🌺 Odorata — 1st Floor Master Bedroom ₱6,000/night</option>
             </select>
           </div>
           <div class="form-group">
@@ -705,7 +707,7 @@
           </div>
           <div class="form-group full">
             <label>Special Requests</label>
-            <textarea placeholder="Any special requests, celebrations, or notes for the host..."></textarea>
+            <textarea id="bm-notes" placeholder="Any special requests, celebrations, or notes for the host..."></textarea>
           </div>
         </div>
         <div class="price-summary" id="priceSummary" style="display:none">
@@ -719,7 +721,7 @@
           <input type="checkbox" id="termsCheck" required>
           <label for="termsCheck">I agree to the Terms & Conditions. I understand that a 50% downpayment is required to confirm my booking. Cancellations must be made at least 48 hours before check-in.</label>
         </div>
-        <button type="submit" class="btn-submit">✦ Confirm Reservation</button>
+        <button type="submit" class="btn-submit" id="bookingSubmitBtn">✦ Confirm Reservation</button>
       </form>
     </div>
   </div>

@@ -1,6 +1,6 @@
 
 // ─── CONFIG ───────────────────────────────────────────────
-const AI_SERVER_URL = "https://bahaynithong.onrender.com/chat";
+const AI_SERVER_URL = "http://localhost:3000/chat";
 
 // ─── ELEMENTS ─────────────────────────────────────────────
 const toggle   = document.getElementById("aiToggle");
@@ -673,7 +673,7 @@ function getDatesInRange(start,end){
 
 async function loadBookedDatesFromServer(){
   try{
-    const res  = await fetch('https://bahaynithong.onrender.com/bookings');
+    const res  = await fetch('http://localhost:3000/bookings');
     const data = await res.json();
     data.forEach(b=>{
       if(!b.checkin||!b.checkout) return;
@@ -755,10 +755,66 @@ document.getElementById('checkIn').addEventListener('change',function(){
   calcPrice();
 });
 
-function submitBooking(e){
+async function submitBooking(e){
   e.preventDefault();
-  closeBooking();
-  document.getElementById('confirmScreen').classList.add('open');
+
+  const firstname = document.getElementById('bm-firstname')?.value.trim() || '';
+  const lastname  = document.getElementById('bm-lastname')?.value.trim()  || '';
+  const name      = (firstname + ' ' + lastname).trim();
+  const email     = document.getElementById('bm-email')?.value.trim()     || '';
+  const phone     = document.getElementById('bm-phone')?.value.trim()     || '';
+  const room      = document.getElementById('modalRoom')?.value            || '';
+  const checkin   = document.getElementById('checkIn')?.value              || '';
+  const checkout  = document.getElementById('checkOut')?.value             || '';
+  const guests    = document.getElementById('numGuests')?.value            || '';
+  const notes     = document.getElementById('bm-notes')?.value.trim()     || '';
+
+  const btn = document.getElementById('bookingSubmitBtn');
+  if(btn){ btn.disabled=true; btn.textContent='Submitting...'; }
+
+  try {
+    const res  = await fetch('https://bahaynithong.onrender.com/booking', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, phone, room, checkin, checkout, guests, notes, source:'modal' })
+    });
+    const data = await res.json();
+
+    if(data.ok){
+      // Update calendar
+      if(typeof getDatesInRange === 'function'){
+        getDatesInRange(checkin, checkout).forEach(d => {
+          if(!bookedDates.all.includes(d)) bookedDates.all.push(d);
+        });
+        if(typeof renderCalendar === 'function') renderCalendar();
+      }
+      // Update confirm screen
+      const confirmMsg = document.getElementById('confirmMsg');
+      if(confirmMsg){
+        confirmMsg.innerHTML = `Thank you po, <strong>${name}</strong>! Your booking has been received.<br>
+          ${email ? `Confirmation email with payment details sent to <strong>${email}</strong>.` : `Our team will contact you at <strong>${phone}</strong> within 24 hours.`}`;
+      }
+      const confirmDetails = document.getElementById('confirmDetails');
+      if(confirmDetails){
+        confirmDetails.style.display='block';
+        document.getElementById('confirmRef').textContent      = data.bookingRef||'—';
+        document.getElementById('confirmRoom').textContent     = room;
+        document.getElementById('confirmCheckin').textContent  = checkin;
+        document.getElementById('confirmCheckout').textContent = checkout;
+        document.getElementById('confirmNights').textContent   = (data.nights||'?')+' night/s';
+        document.getElementById('confirmTotal').textContent    = '₱'+Number(data.totalPrice||0).toLocaleString();
+        document.getElementById('confirmDP').textContent       = '₱'+Number(data.downpayment||0).toLocaleString()+' (50% required)';
+      }
+    } else {
+      throw new Error(data.message||'Server error');
+    }
+  } catch(err){
+    console.warn('Booking error:', err.message);
+  } finally {
+    if(btn){ btn.disabled=false; btn.textContent='✦ Confirm Reservation'; }
+    closeBooking();
+    document.getElementById('confirmScreen').classList.add('open');
+  }
 }
 function closeConfirm(){
   document.getElementById('confirmScreen').classList.remove('open');
