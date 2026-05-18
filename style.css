@@ -274,7 +274,22 @@ body:not(.dark-mode) .faq-chip { background: rgba(0,0,0,0.05); border-color: rgb
   flex-shrink: 0;
 }
 body:not(.dark-mode) #aiBookingForm { background: rgba(0,0,0,0.03); border-top: 1px solid rgba(0,0,0,0.08); }
-.ai-form-title { font-weight: 700; font-size: 13px; margin-bottom: 10px; color: var(--gold); }
+.ai-form-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; }
+.ai-form-title { font-weight: 700; font-size: 13px; color: var(--gold); }
+.bf-close-btn {
+  background: rgba(255,255,255,0.1);
+  border: none;
+  color: var(--cream);
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 13px;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+.bf-close-btn:hover { background: var(--red, #e74c3c); }
+body:not(.dark-mode) .bf-close-btn { color: #333; }
 .ai-form-grid { display: flex; flex-direction: column; gap: 7px; }
 .ai-form-grid input,
 .ai-form-grid select,
@@ -417,7 +432,7 @@ nav.scrolled{
   position:absolute;inset:0;
   background:
     linear-gradient(165deg,rgba(10,20,12,0.65) 0%,rgba(31,61,43,0.4) 50%,rgba(107,79,58,0.35) 100%),
-    url('baguio.jpg') center/cover no-repeat;
+    url('Thong/IMG_20260507_174504.jpg') center/cover no-repeat;
   transform:scale(1.05);
   animation:heroZoom 20s ease-in-out infinite alternate;
 }
@@ -691,7 +706,7 @@ body.dark-mode #availability{background:linear-gradient(135deg,#0a1a10,#0d2014)}
   width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:1rem;transition:all 0.3s;
 }
 .cal-nav-btn:hover{background:#C6A75E;color:#0E1F15}
-.cal-month{font-family:'Cormorant Garamond',serif;font-size:1.4rem;min-width:180px;text-align:center}
+.cal-month{font-family:'Cormorant Garamond',serif;font-size:1.4rem;min-width:180px;text-align:center; color:#C6A75E;font-weight:500}
 .calendar{
   background:rgba(245,241,232,0.05);border:1px solid rgba(198,167,94,0.15);
   border-radius:4px;overflow:hidden;

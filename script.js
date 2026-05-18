@@ -1,6 +1,6 @@
 
 // ─── CONFIG ───────────────────────────────────────────────
-const AI_SERVER_URL = "http://localhost:3000/chat";
+const AI_SERVER_URL = "https://bahaynithong.onrender.com/chat";
 
 // ─── ELEMENTS ─────────────────────────────────────────────
 const toggle   = document.getElementById("aiToggle");
@@ -95,9 +95,6 @@ bfBtn.onclick = () => {
 };
 document.getElementById("bf-cancel").onclick = () => {
   bfForm.style.display = "none";
-  // Show chat messages and input again
-  document.getElementById("aiMessages").style.display = "block";
-  document.getElementById("aiFAQ").style.display = "block";
 };
 document.getElementById("bf-submit").onclick = async () => {
   const name     = document.getElementById("bf-name").value.trim();
