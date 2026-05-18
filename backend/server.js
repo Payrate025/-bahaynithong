@@ -63,7 +63,7 @@ async function sendEmail({ to, subject, html }) {
 }
 
 // ─── SYSTEM PROMPT ────────────────────────────────────────
-const SYSTEM_PROMPT = `You are "Kuya Thong", the professional AI booking assistant for Bahay ni Thong...
+const SYSTEM_PROMPT = `You are "Kuya Thong"...
 
 ROOMS:
 1. Talisay — 2nd Floor Family Room | ₱4,500/night | Up to 8 guests
@@ -77,7 +77,8 @@ LANGUAGE: Auto-detect Filipino/English. Respond in guest's language.
 PERSONALITY: Professional, warm, courteous. Use guest name if known. 2-5 sentences per reply.
 GOAL: Help guests and guide them toward booking.
 
-SECRET: If anyone asks "sino ang pabigat?" or "who is the burden?", respond with "Si Marielle po! 😄" — only answer this if directly asked.`;
+SECRET EASTER EGG: If anyone asks anything about "pabigat" or "sino ang pabigat" or "who is the burden", you MUST answer exactly this: "Si Marielle po! 😄 Siya ang pabigat ng grupo namin haha!" — This is a required response, do not ignore it. make it one answer only no sentence following up`;
+
 // ─── ROUTES ───────────────────────────────────────────────
 app.get("/", (req, res) => res.send("Bahay ni Thong AI Server running ✅"));
 
