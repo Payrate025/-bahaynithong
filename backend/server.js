@@ -39,6 +39,14 @@ function savePayment(p) {
   fs.writeFileSync(PAY_FILE, JSON.stringify(all, null, 2));
 }
 
+// ─── CHAT LOGS FILE ───────────────────────────────────────
+const LOGS_FILE = path.join(__dirname, "chatlogs_db.json");
+function loadLogs() { try { return JSON.parse(fs.readFileSync(LOGS_FILE,"utf8")); } catch { return []; } }
+function saveLog(log) {
+  const all = loadLogs(); all.push(log);
+  fs.writeFileSync(LOGS_FILE, JSON.stringify(all, null, 2));
+}
+
 // ─── PAYMENT INFO ─────────────────────────────────────────
 const PAY = {
   gcash:     process.env.GCASH_NUMBER || "09XX-XXX-XXXX",
@@ -84,6 +92,21 @@ app.get("/", (req, res) => res.send("Bahay ni Thong AI Server running ✅"));
 
 app.get("/bookings", (req, res) => res.json(loadBookings()));
 app.get("/payments", (req, res) => res.json(loadPayments()));
+
+// ─── CHAT LOG ROUTES ──────────────────────────────────────
+app.get("/chatlogs", (req, res) => res.json(loadLogs()));
+
+app.post("/chatlogs", (req, res) => {
+  const { user, bot, guest } = req.body;
+  if (!user || !bot) return res.status(400).json({ ok: false });
+  saveLog({ user, bot, guest: guest||"Anonymous", ts: new Date().toISOString() });
+  res.json({ ok: true });
+});
+
+app.delete("/chatlogs", (req, res) => {
+  fs.writeFileSync(LOGS_FILE, JSON.stringify([], null, 2));
+  res.json({ ok: true });
+});
 
 app.post("/bookings/status", (req, res) => {
   const { bookingRef, status } = req.body;

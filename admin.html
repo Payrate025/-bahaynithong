@@ -642,8 +642,18 @@ async function sendPaymentEmail() {
 }
 
 // ── CHAT LOGS ─────────────────────────────────────────────
-function renderLogs() {
-  const logs = JSON.parse(localStorage.getItem("chatLogs") || "[]").reverse();
+async function renderLogs() {
+  let logs = [];
+  try {
+    const res = await fetch(SERVER + "/chatlogs");
+    if(res.ok) {
+      logs = await res.json();
+      logs = logs.slice().reverse();
+    }
+  } catch(e) {
+    // fallback to localStorage
+    logs = JSON.parse(localStorage.getItem("chatLogs") || "[]").reverse();
+  }
   document.getElementById("chatLogsContainer").innerHTML = logs.length
     ? logs.map(l => `<div class="log-item">
         <div class="log-meta">${new Date(l.ts).toLocaleString("en-PH")} · Guest: ${l.guest || "Anonymous"}</div>
@@ -653,9 +663,13 @@ function renderLogs() {
     : `<div class="empty">No chat logs yet. Guest conversations will appear here once they interact with Kuya Thong.</div>`;
 }
 
-function clearLogs() {
+async function clearLogs() {
   if (confirm("Clear all chat logs?")) {
-    localStorage.removeItem("chatLogs");
+    try {
+      await fetch(SERVER + "/chatlogs", { method: "DELETE" });
+    } catch(e) {
+      localStorage.removeItem("chatLogs");
+    }
     renderLogs();
     showNotif("Chat logs cleared.", "success");
   }
