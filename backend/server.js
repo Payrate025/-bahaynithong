@@ -2,13 +2,26 @@ require("dotenv").config();
 
 const express = require("express");
 const cors    = require("cors");
-const { Resend } = require("resend");
+const nodemailer = require("nodemailer");
 const fs      = require("fs");
 const path    = require("path");
 const fetch   = (...args) => import("node-fetch").then(({ default: f }) => f(...args));
 
 const app    = express();
-const resend = new Resend(process.env.RESEND_API_KEY);
+// ─── BREVO SMTP (sends to ANY email, free tier = 300/day) ────
+const mailer = nodemailer.createTransport({
+  host: "smtp-relay.brevo.com",
+  port: 587,
+  secure: false,
+  auth: {
+    user: process.env.BREVO_USER,
+    pass: process.env.BREVO_PASS
+  }
+});
+mailer.verify(err => {
+  if (err) console.error("❌ Brevo SMTP failed:", err.message);
+  else     console.log("✅ Brevo SMTP connected");
+});
 
 app.use(cors({
   origin: "*",
@@ -39,14 +52,6 @@ function savePayment(p) {
   fs.writeFileSync(PAY_FILE, JSON.stringify(all, null, 2));
 }
 
-// ─── CHAT LOGS FILE ───────────────────────────────────────
-const LOGS_FILE = path.join(__dirname, "chatlogs_db.json");
-function loadLogs() { try { return JSON.parse(fs.readFileSync(LOGS_FILE,"utf8")); } catch { return []; } }
-function saveLog(log) {
-  const all = loadLogs(); all.push(log);
-  fs.writeFileSync(LOGS_FILE, JSON.stringify(all, null, 2));
-}
-
 // ─── PAYMENT INFO ─────────────────────────────────────────
 const PAY = {
   gcash:     process.env.GCASH_NUMBER || "09XX-XXX-XXXX",
@@ -57,14 +62,13 @@ const PAY = {
 // ─── SEND EMAIL via Resend ────────────────────────────────
 async function sendEmail({ to, subject, html }) {
   try {
-    const result = await resend.emails.send({
-      from:    "Bahay ni Thong <onboarding@resend.dev>",
+    await mailer.sendMail({
+      from:    `"Bahay ni Thong" <${process.env.BREVO_USER}>`,
       to,
       subject,
       html
     });
     console.log("✅ Email sent to", to);
-    return result;
   } catch(err) {
     console.error("❌ Email failed:", err.message);
   }
@@ -92,21 +96,6 @@ app.get("/", (req, res) => res.send("Bahay ni Thong AI Server running ✅"));
 
 app.get("/bookings", (req, res) => res.json(loadBookings()));
 app.get("/payments", (req, res) => res.json(loadPayments()));
-
-// ─── CHAT LOG ROUTES ──────────────────────────────────────
-app.get("/chatlogs", (req, res) => res.json(loadLogs()));
-
-app.post("/chatlogs", (req, res) => {
-  const { user, bot, guest } = req.body;
-  if (!user || !bot) return res.status(400).json({ ok: false });
-  saveLog({ user, bot, guest: guest||"Anonymous", ts: new Date().toISOString() });
-  res.json({ ok: true });
-});
-
-app.delete("/chatlogs", (req, res) => {
-  fs.writeFileSync(LOGS_FILE, JSON.stringify([], null, 2));
-  res.json({ ok: true });
-});
 
 app.post("/bookings/status", (req, res) => {
   const { bookingRef, status } = req.body;

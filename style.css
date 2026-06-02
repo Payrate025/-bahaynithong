@@ -192,7 +192,7 @@ body:not(.dark-mode) #aiInput{
   display: flex; align-items: center; justify-content: center;
   font-weight: 700;
 }
-#aiToggle { position: fixed; bottom:24px; left:24px; z-index:1000; }
+#aiToggle { position: fixed; bottom:24px; left:24px; z-index:1000; display:flex; align-items:center; justify-content:center; }
 
 /* Header upgrade */
 .ai-header { justify-content: space-between; align-items: center; }
@@ -363,7 +363,7 @@ body:not(.dark-mode) .ai-form-grid textarea {
 nav{
   position:fixed;top:0;left:0;right:0;z-index:1000;
   display:flex;align-items:center;justify-content:space-between;
-  padding:1.25rem 4%;
+  padding:0.9rem 4%;
   transition:background 0.4s,box-shadow 0.4s,padding 0.3s;
 }
 nav.scrolled{
@@ -379,9 +379,9 @@ nav.scrolled{
   text-decoration:none;display:flex;flex-direction:column;line-height:1.1;
 }
 .nav-logo span{font-size:0.55rem;font-family:'Jost',sans-serif;letter-spacing:0.35em;color:#8A8A8A;text-transform:uppercase;font-weight:400}
-.nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+.nav-links{display:flex;align-items:center;gap:1.4rem;list-style:none}
 .nav-links a{
-  font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;
+  font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;
   color:#F5F1E8;text-decoration:none;font-weight:500;
   position:relative;padding-bottom:3px;transition:color 0.3s;
 }
@@ -394,9 +394,9 @@ nav.scrolled{
 .nav-actions{display:flex;align-items:center;gap:0.75rem}
 .btn-nav-book{
   background:#C6A75E;color:#0E1F15;
-  border:none;padding:0.6rem 1.4rem;
-  font-family:'Jost',sans-serif;font-size:0.75rem;
-  letter-spacing:0.12em;text-transform:uppercase;font-weight:600;
+  border:none;padding:0.5rem 1.1rem;
+  font-family:'Jost',sans-serif;font-size:0.68rem;
+  letter-spacing:0.1em;text-transform:uppercase;font-weight:600;
   cursor:pointer;border-radius:2px;transition:all 0.3s;
 }
 .btn-nav-book:hover{background:#e8c97e;transform:translateY(-1px);box-shadow:0 4px 16px rgba(198,167,94,0.4)}
@@ -432,7 +432,7 @@ nav.scrolled{
   position:absolute;inset:0;
   background:
     linear-gradient(165deg,rgba(10,20,12,0.65) 0%,rgba(31,61,43,0.4) 50%,rgba(107,79,58,0.35) 100%),
-    url('baguio.jpg') center/cover no-repeat;
+    url('Thong/IMG_20260507_174504.jpg') center/cover no-repeat;
   transform:scale(1.05);
   animation:heroZoom 20s ease-in-out infinite alternate;
 }
@@ -706,7 +706,7 @@ body.dark-mode #availability{background:linear-gradient(135deg,#0a1a10,#0d2014)}
   width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:1rem;transition:all 0.3s;
 }
 .cal-nav-btn:hover{background:#C6A75E;color:#0E1F15}
-.cal-month{font-family:'Cormorant Garamond',serif;font-size:1.4rem;min-width:180px;text-align:center}
+.cal-month{font-family:'Cormorant Garamond',serif;font-size:1.4rem;min-width:180px;text-align:center; color:#C6A75E;font-weight:500}
 .calendar{
   background:rgba(245,241,232,0.05);border:1px solid rgba(198,167,94,0.15);
   border-radius:4px;overflow:hidden;

@@ -23,6 +23,11 @@ let guestMemory = {}; // remembers name, room preference, etc.
 
 // ─── CHAT LOG (for admin dashboard) ───────────────────────
 function logConversation(user, bot) {
+  fetch("https://bahaynithong.onrender.com/chatlogs", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ user, bot, guest: guestMemory.name || "Anonymous" })
+  }).catch(e => console.warn("Log save failed:", e));
   const logs = JSON.parse(localStorage.getItem("chatLogs") || "[]");
   logs.push({ ts: new Date().toISOString(), user, bot, guest: guestMemory.name || "Anonymous" });
   localStorage.setItem("chatLogs", JSON.stringify(logs));
@@ -39,7 +44,7 @@ function openChat() {
   box.style.display = "flex";
   box.style.flexDirection = "column";
   badge.style.display = "none";
-  toggle.style.display = "none"; // hide toggle button when chat is open
+  toggle.style.display = "none"; // hide toggle button
   if (!hasGreeted) {
     hasGreeted = true;
     setTimeout(() => {
@@ -51,8 +56,8 @@ function openChat() {
 function closeChat() {
   isOpen = false;
   box.style.display = "none";
-  toggle.style.display = "flex"; // show toggle button when chat is closed
-  bfForm.style.display = "none"; // also close booking form
+  toggle.style.display = "flex"; // show toggle button again
+  bfForm.style.display = "none";
 }
 
 toggle.onclick = openChat;
@@ -114,8 +119,6 @@ document.getElementById("bf-submit").onclick = async () => {
   const submitBtn = document.getElementById("bf-submit");
   submitBtn.disabled = true;
   submitBtn.textContent = "Sending...";
-
-  // Remember guest
   guestMemory.name = name;
   guestMemory.room = room;
   bfForm.style.display = "none";
@@ -133,39 +136,24 @@ document.getElementById("bf-submit").onclick = async () => {
       const total  = data.totalPrice ? "₱" + Number(data.totalPrice).toLocaleString() : "";
       const dp     = data.downpayment ? "₱" + Number(data.downpayment).toLocaleString() : "";
       addMsg(
-        `Thank you po, ${name}! ✅ Booking received (Ref: ${data.bookingRef}).
-
-` +
-        `📋 ${room}
-📅 ${checkin} → ${checkout} (${nights} night/s)
-💰 Total: ${total} | Downpayment: ${dp}
-
-` +
-        `${email ? `A confirmation email with payment details has been sent to ${email}.` : `Our team will contact you at ${phone} within 24 hours po!`}`,
+        `Thank you po, ${name}! ✅ Booking received (Ref: ${data.bookingRef}).\n\n` +
+        `📋 ${room}\n📅 ${checkin} → ${checkout} (${nights} night/s)\n💰 Total: ${total} | Downpayment: ${dp}\n\n` +
+        `${email ? `Confirmation email with payment details sent to ${email}.` : `Our team will contact you at ${phone} within 24 hours po!`}`,
         "bot"
       );
+      getDatesInRange(checkin, checkout).forEach(d => {
+        const rk = room.toLowerCase().includes('talisay') ? 'talisay' :
+                   room.toLowerCase().includes('hauili')  ? 'hauili'  :
+                   room.toLowerCase().includes('salong')  ? 'salong'  :
+                   room.toLowerCase().includes('odorata') ? 'odorata' : 'all';
+        if (!pendingDates[rk].includes(d))  pendingDates[rk].push(d);
+        if (!pendingDates.all.includes(d))  pendingDates.all.push(d);
+      });
+      renderCalendar();
       logConversation(`[Booking Form] ${room} ${checkin}-${checkout}`, `Booking confirmed for ${name} [${data.bookingRef}]`);
-
-      // Update calendar
-      if(typeof getDatesInRange === "function") {
-        getDatesInRange(checkin, checkout).forEach(d => {
-          if(!bookedDates.all.includes(d)) bookedDates.all.push(d);
-        });
-        if(typeof renderCalendar === "function") renderCalendar();
-      }
-    } else {
-      throw new Error(data.message || "Server error");
-    }
+    } else throw new Error(data.message || "Server error");
   } catch (err) {
-    const bookingRef = "BNT-" + Date.now().toString().slice(-6);
-    addMsg(
-      `Thank you po, ${name}! ✅ Booking noted (Ref: ${bookingRef}).
-` +
-      `Our team will contact you at ${phone} within 24 hours to confirm.
-` +
-      `(Please also message us on WhatsApp: +63 917 123 4567)`,
-      "bot"
-    );
+    addMsg(`Thank you po, ${name}! Your booking has been noted. Our team will contact you at ${phone} within 24 hours.`, "bot");
     console.error("Chat booking error:", err);
   } finally {
     submitBtn.disabled = false;
@@ -191,7 +179,7 @@ async function sendMessage() {
   isSending = true;
   send.disabled = true;
   input.disabled = true;
-  // FAQ stays visible always
+  document.getElementById("aiFAQ").style.display = "none";
 
   addMsg(text, "user");
   input.value = "";
@@ -727,7 +715,7 @@ function getDatesInRange(start,end){
 
 async function loadBookedDatesFromServer(){
   try{
-    const res  = await fetch('http://localhost:3000/bookings');
+    const res  = await fetch('https://bahaynithong.onrender.com/bookings');
     const data = await res.json();
     data.forEach(b=>{
       if(!b.checkin||!b.checkout) return;
@@ -809,10 +797,60 @@ document.getElementById('checkIn').addEventListener('change',function(){
   calcPrice();
 });
 
-function submitBooking(e){
+async function submitBooking(e){
   e.preventDefault();
-  closeBooking();
-  document.getElementById('confirmScreen').classList.add('open');
+  const firstname = document.getElementById('bm-firstname')?.value.trim() || '';
+  const lastname  = document.getElementById('bm-lastname')?.value.trim()  || '';
+  const name      = (firstname+' '+lastname).trim();
+  const email     = document.getElementById('bm-email')?.value.trim()     || '';
+  const phone     = document.getElementById('bm-phone')?.value.trim()     || '';
+  const room      = document.getElementById('modalRoom')?.value            || '';
+  const checkin   = document.getElementById('checkIn')?.value              || '';
+  const checkout  = document.getElementById('checkOut')?.value             || '';
+  const guests    = document.getElementById('numGuests')?.value            || '';
+  const notes     = document.getElementById('bm-notes')?.value?.trim()    || '';
+
+  const btn = document.getElementById('bookingSubmitBtn') || e.target.querySelector('button[type=submit]');
+  if(btn){ btn.disabled=true; btn.textContent='Submitting...'; }
+
+  try {
+    const res  = await fetch('https://bahaynithong.onrender.com/booking', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ name, email, phone, room, checkin, checkout, guests, notes, source:'modal' })
+    });
+    const data = await res.json();
+    if(data.ok){
+      getDatesInRange(checkin,checkout).forEach(d=>{
+        const rk = room.toLowerCase().includes('talisay')?'talisay':room.toLowerCase().includes('hauili')?'hauili':room.toLowerCase().includes('salong')?'salong':room.toLowerCase().includes('odorata')?'odorata':'all';
+        if(!pendingDates[rk].includes(d)) pendingDates[rk].push(d);
+        if(!pendingDates.all.includes(d)) pendingDates.all.push(d);
+      });
+      renderCalendar();
+      const cMsg = document.getElementById('confirmMsg');
+      const cDet = document.getElementById('confirmDetails');
+      if(cMsg) cMsg.innerHTML=`Thank you po, <strong>${name}</strong>! Your booking has been received.<br>${email?`Confirmation email with payment details sent to <strong>${email}</strong>.`:`Our team will contact you at <strong>${phone}</strong> within 24 hours.`}`;
+      if(cDet){
+        cDet.style.display='block';
+        document.getElementById('confirmRef').textContent      = data.bookingRef||'—';
+        document.getElementById('confirmRoom').textContent     = room;
+        document.getElementById('confirmCheckin').textContent  = checkin;
+        document.getElementById('confirmCheckout').textContent = checkout;
+        document.getElementById('confirmNights').textContent   = (data.nights||'?')+' night/s';
+        document.getElementById('confirmTotal').textContent    = '₱'+Number(data.totalPrice||0).toLocaleString();
+        document.getElementById('confirmDP').textContent       = '₱'+Number(data.downpayment||0).toLocaleString()+' (50% required)';
+      }
+    } else throw new Error(data.message||'Server error');
+  } catch(err){
+    const cMsg=document.getElementById('confirmMsg');
+    if(cMsg) cMsg.innerHTML='Your booking has been noted. Please contact us at <strong>+63 917 123 4567</strong>.';
+    const cDet=document.getElementById('confirmDetails');
+    if(cDet) cDet.style.display='none';
+    console.warn('Booking error:',err.message);
+  } finally {
+    if(btn){ btn.disabled=false; btn.textContent='✦ Confirm Reservation'; }
+    closeBooking();
+    document.getElementById('confirmScreen').classList.add('open');
+  }
 }
 function closeConfirm(){
   document.getElementById('confirmScreen').classList.remove('open');
